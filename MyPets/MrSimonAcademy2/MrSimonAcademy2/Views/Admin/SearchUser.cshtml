@@ -1,0 +1,180 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.User>
+
+
+@if (Model.Count() == 0)
+{
+    <p>Пользователи с таким именем не найдены</p>
+}
+else
+{
+
+    foreach (var item in Model)
+    {
+        <div class="userlist-item">
+            <div class="userlist-item__header">
+                @if (item.withoutAvatar)
+                {
+                    <div class="avatar empty">
+                        <img src="~/Content/img_back/profile/simon-hours.svg" alt="">
+                    </div>
+
+                }
+                else
+                {
+                    <div class="avatar">
+                        <img src="https://mrsimon.ru/u_photos/@item.avatarName" alt="">
+                    </div>
+
+                }
+                <div class="descr">
+                    @if (item.RoleName == "Student")
+                    {
+                        @Html.ActionLink(item.UserFName + " " + item.UserLName, "GetUser", new { id = item.Id }, new { @class = "name" })
+                    }
+                    else
+                    {
+                        <span class="name">@item.UserFName  @item.UserLName</span>
+                    }
+                    @if (item.RoleName == "Teacher")
+                    {
+                        <span class="type">Учитель</span>
+                    }
+                    @if (item.RoleName == "Admin")
+                    {
+                        <span class="type">Админ</span>
+                    }
+                    @if (item.RoleName == "Student")
+                    {
+                        <span class="type">Студент</span>
+                    }
+                </div>
+                <div class="actions">
+
+                    @if (item.RoleName == "Student")
+                    {
+                        <div class="actions-item js-toAddingStatistic" data-id="@item.Id" data-user="@item.UserFName @item.UserLName">
+                            <img src="~/Content/img_back/icons/add-statistic-icon.svg" alt="" class="icon">
+                            <span>+ Статистика</span>
+                        </div>
+                        <div class="actions-item  js-toAddingMessage" data-id="@item.Id" data-user="@item.UserFName @item.UserLName">
+                            <img src="~/Content/img_back/icons/add-message-icon.svg" alt="" class="icon">
+                            <span>+ Сообщение</span>
+                        </div>
+                    }
+
+                    <a href="~/Admin/DisableUser/@item.Id" class="actions-item">
+                        <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                        <span>Отключить</span>
+                    </a>
+
+                    <a href="~/Admin/EditUser/@item.Id" class="actions-item">
+                        <img src="~/Content/img_back/icons/edit-icon.svg" alt="" class="icon">
+                        <span>Изменить</span>
+                    </a>
+
+                    <div class="open">
+                        <img src="~/Content/img/icons/arrow-icon_blue.svg" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="userlist-item__body">
+                <div class="actions">
+
+
+                    @if (item.RoleName == "Student")
+                    {
+                        <div class="actions-item js-toAddingStatistic" data-id="@item.Id" data-user="@item.UserFName @item.UserLName">
+                            <img src="~/Content/img_back/icons/add-statistic-icon.svg" alt="" class="icon">
+                            <span>+ Статистика</span>
+                        </div>
+                        <div class="actions-item  js-toAddingMessage" data-id="@item.Id" data-user="@item.UserFName @item.UserLName">
+                            <img src="~/Content/img_back/icons/add-message-icon.svg" alt="" class="icon">
+                            <span>+ Сообщение</span>
+                        </div>
+
+                    }
+
+
+                    <a href="~/Admin/DisableUser/@item.Id" class="actions-item">
+                        <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                        <span>Отключить</span>
+                    </a>
+
+                    <a href="~/Admin/EditUser/@item.Id" class="actions-item">
+                        <img src="~/Content/img_back/icons/edit-icon.svg" alt="" class="icon">
+                        <span>Изменить</span>
+                    </a>
+
+                </div>
+                <div class="groups-info">
+                    <div class="groups-info__item">
+                        <span class="name">E-mail:</span>
+                        @if (!item.EmailConfirmed)
+                        {
+                            <span class="data">@item.Email <span class="lastData">(Не подтверждена)</span></span>
+                        }
+                        else
+                        {
+                            <span class="data">@item.Email </span>
+                        }
+                    </div>
+
+                    @if (item.RoleName == "Student")
+                    {
+                        DateTime FullBD = item.Birthday;
+                        string year = FullBD.Year.ToString("00");
+                        string month = FullBD.Month.ToString("00");
+                        string day = FullBD.Day.ToString("00");
+
+                        <div class="groups-info__item">
+                            <span class="name">Дата рождения:</span>
+                            <span class="data ">@day. @month. @year</span>
+                        </div>
+                    }
+
+
+                    <div class="groups-info__item">
+                        <span class="name">Уровень:</span>
+                        <span class="data">@item.levelName</span>
+                    </div>
+                    @if (item.RoleName == "Student")
+                    {
+                        <div class="groups-info__item">
+                            <span class="name">Статистика:</span>
+                            @if (!item.hasFeedback)
+                            {
+                                <span class="data">Не добавлена</span>
+                            }
+                            else
+                            {
+                                DateTime lastFeedback = item.lastFeedback;
+                                string y = lastFeedback.Year.ToString("00");
+                                string m = lastFeedback.Month.ToString("00");
+                                string d = lastFeedback.Day.ToString("00");
+                                string h = lastFeedback.Hour.ToString("00");
+                                string minute = lastFeedback.Minute.ToString("00");
+                                <span class="data">Последняя - @d.@m.@y в @h:@minute</span>
+                            }
+
+                        </div>
+                    }
+
+
+                    <div class="groups-info__item">
+                        <span class="name">Пароль:</span>
+                        @Html.ActionLink("Нажмите здесь, чтобы сменить пароль", "ResetPassword", "Account", new { userId = item.Id }, new { @class = "data link" })
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    }
+
+}
+

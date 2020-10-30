@@ -1,0 +1,51 @@
+﻿
+    <div class="admin-add admin-content__item js-admin-AddMessageForAll ">
+        <p>Сообщение для всех пользователей</p>
+
+        @using (Html.BeginForm("AddMessageForAll", "Admin", FormMethod.Post, new { id = "AddMessageForAllForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="input-block ">
+                <span class="text">Заголовок:</span>
+                <input type="text" name="msgTitle" class="input " placeholder="Очень важно!">
+
+            </div>
+            <div class="input-block ">
+                <span class="text">Сообщение:</span>
+                <textarea rows="10" cols="45" class="input" name="msgText"
+                          placeholder="Здесь какое-то сообщение"></textarea>
+            </div>
+
+            <div class="admin-add__block levels" style="flex-direction: column">
+
+                <span class="admin-add__text">Для кого это сообщение?</span>
+
+
+                <label class="radio">
+                    <input type="radio" name="targetType" value="Teacher" />
+                    <span class="radio__text"> Только для учителей</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="targetType" value="Student" />
+                    <span class="radio__text"> Только для студентов</span>
+                </label>
+                <!--
+    <label class="radio">
+        <input type="radio" name="targetType" value="Admin" />
+        <span class="radio__text"> Только для Администраторов</span>
+    </label>
+        -->
+                <label class="radio">
+                    <input type="radio" name="targetType" checked value="All" />
+                    <span class="radio__text"> Для всех пользователей</span>
+                </label>
+
+            </div>
+
+            <input type="submit" class="submit" value="Добавить">
+            <div class="back js-backToAllMessages" data-location="information-all">Назад к списку</div>
+
+        }
+
+    </div>

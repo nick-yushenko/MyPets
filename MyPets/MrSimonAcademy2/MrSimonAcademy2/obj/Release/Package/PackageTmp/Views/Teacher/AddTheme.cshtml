@@ -1,0 +1,54 @@
+﻿
+<div class="admin-add admin-content__item js-admin-addtheme " style="width: 100%;">
+    <p>Добавление темы для группы <span id="js-TargetNameAddTheme">(Группа не найдена)</span></p>
+
+    @using (Html.BeginForm("AddTheme", "Teacher", FormMethod.Post, new { id = "AddThemeForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="returnUrl" value="none" id="js-returnUrlIdAddTheme">
+        <input type="hidden" name="groupId" value="none" id="js-TargetIdAddTheme">
+
+
+        <div class="admin-add__block colors" style="margin-bottom: 15px;">
+
+            <span class="admin-add__text">1. Выберите цвет темы</span>
+
+            <label class="radio" style="max-width: 235px;">
+                <input type="radio" name="color" checked value="Blue" />
+                <span class="radio__text">
+                    <div style="width: 200px; height: 30px; background-color: #87C0E3; color: #ffffff; padding-left: 10px;">Синий</div>
+                </span>
+            </label>
+            <label class="radio" style="max-width: 235px;">
+                <input type="radio" name="color" value="Pink" />
+                <span class="radio__text">
+                    <div style="width: 200px; height: 30px; background-color: #D58BA2;  color: #ffffff; padding-left: 10px;">Розовый</div>
+                </span>
+            </label>
+            <label class="radio" style="max-width: 235px;">
+                <input type="radio" name="color" value="Green" />
+                <span class="radio__text">
+                    <div style="width: 200px; height: 30px; background-color: #7FD3B0;  color: #ffffff; padding-left: 10px;">Зеленый</div>
+                </span>
+            </label>
+            <label class="radio" style="max-width: 235px;">
+                <input type="radio" name="color" value="Purpure" />
+                <span class="radio__text">
+                    <div style="width: 200px; height: 30px; background-color: #9D90C0;  color: #ffffff; padding-left: 10px;">Фиолетовый</div>
+                </span>
+            </label>
+        </div>
+        <div class="input-block ">
+            <span class="text">Название темы</span>
+            <input type="text" name="themeName" minlength="3" maxlength="30" class="input " placeholder="Crime and Punishment">
+        </div>
+
+
+
+        <input type="submit" class="submit" value="Добавить">
+        <div class="back js-backToGroupList" data-location="admin-groups" data-second-location="theme-all">Назад к списку</div>
+    }
+
+
+</div>

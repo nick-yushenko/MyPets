@@ -1,0 +1,282 @@
+﻿
+<div class="statistic-block withShadow level">
+    <h2 class="statistic-block__title">
+        Ваш уровень владения языком&nbsp;&mdash;
+        <span class="primary">
+            @ViewBag.Level
+        </span>
+    </h2>
+    <div class="info-btn">
+        <img src="~/Content/img_back/icons/info-icon.svg" alt="">
+    </div>
+    <div class="info-block">
+        Оценка языковой компетенции согласно CEFR
+    </div>
+    @{
+        int DataLevel = 0;
+        int DataProgress1 = ViewBag.Pos;
+        int DataProgress2 = ViewBag.Pos;
+        int DataProgress3 = ViewBag.Pos;
+        int DataProgress4 = ViewBag.Pos;
+        int DataProgress5 = ViewBag.Pos;
+        int DataProgress6 = ViewBag.Pos;
+        int DataProgress7 = ViewBag.Pos;
+
+        if (ViewBag.Level.ToUpper() == "STERTER")
+        {
+            DataLevel = 1;
+            DataProgress1 = ViewBag.Pos;
+            DataProgress2 = 0;
+            DataProgress3 = 0;
+            DataProgress4 = 0;
+            DataProgress5 = 0;
+            DataProgress6 = 0;
+            DataProgress7 = 0;
+
+        }
+        if (ViewBag.Level.ToUpper() == "BEGINNER")
+        {
+            DataLevel = 2;
+            DataProgress1 = 100;
+            DataProgress2 = ViewBag.Pos;
+            DataProgress3 = 0;
+            DataProgress4 = 0;
+            DataProgress5 = 0;
+            DataProgress6 = 0;
+            DataProgress7 = 0;
+
+        }
+        if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+        {
+            DataLevel = 3;
+            DataProgress1 = 100;
+            DataProgress2 = 100;
+            DataProgress3 = ViewBag.Pos;
+            DataProgress4 = 0;
+            DataProgress5 = 0;
+            DataProgress6 = 0;
+            DataProgress7 = 0;
+        }
+        if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+        {
+            DataLevel = 4;
+            DataProgress1 = 100;
+            DataProgress2 = 100;
+            DataProgress3 = 100;
+            DataProgress4 = ViewBag.Pos;
+            DataProgress5 = 0;
+            DataProgress6 = 0;
+            DataProgress7 = 0;
+        }
+        if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+        {
+            DataLevel = 5;
+            DataProgress1 = 100;
+            DataProgress2 = 100;
+            DataProgress3 = 100;
+            DataProgress4 = 100;
+            DataProgress5 = ViewBag.Pos;
+            DataProgress6 = 0;
+            DataProgress7 = 0;
+        }
+        if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+        {
+            DataLevel = 6;
+            DataProgress1 = 100;
+            DataProgress2 = 100;
+            DataProgress3 = 100;
+            DataProgress4 = 100;
+            DataProgress5 = 100;
+            DataProgress6 = ViewBag.Pos;
+            DataProgress7 = 0;
+        }
+        if (ViewBag.Level.ToUpper() == "ADVANCED")
+        {
+            DataLevel = 7;
+            DataProgress1 = 100;
+            DataProgress2 = 100;
+            DataProgress3 = 100;
+            DataProgress4 = 100;
+            DataProgress5 = 100;
+            DataProgress6 = 100;
+            DataProgress7 = ViewBag.Pos;
+        }
+        if (ViewBag.Level.ToUpper() == "PROFICIENCY")
+        {
+            DataLevel = 8;
+            DataProgress1 = 100;
+            DataProgress2 = 100;
+            DataProgress3 = 100;
+            DataProgress4 = 100;
+            DataProgress5 = 100;
+            DataProgress6 = 100;
+            DataProgress7 = ViewBag.Pos;
+        }
+
+
+    }
+    <div class="level-container swiper-container" data-level="@DataLevel">
+        <div class="level-wrapper swiper-wrapper">
+            <div class="level-slide swiper-slide">
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Starter</span>
+                    <div class="level-diagram__block" style="height: 60px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress1"></span>
+                        <!--
+                        @if (DataProgress1 != 0 && DataProgress1 != 100)
+                        {
+                            <div class="last-point" data-point="@ViewBag.lastPos">
+                                <span class="line"></span>
+                                <span class="date">@ViewBag.lastPosDate</span>
+                                <span class="line"></span>
+                            </div>
+                        }
+                        -->
+                    </div>
+                </div>
+                <p class="level-descr">
+                    Ты&nbsp;только на&nbsp;начале пути в&nbsp;многообразие мира иностранного языка
+                </p>
+            </div>
+            <div class="level-slide swiper-slide">
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Beginner</span>
+                    <div class="level-diagram__block" style="height: 90px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress2"></span>
+                        <!--
+                        @if (DataProgress2 != 0 && DataProgress2 != 100)
+                        {
+                            <div class="last-point" data-point="@ViewBag.lastPos">
+                                <span class="line"></span>
+                                <span class="date">@ViewBag.lastPosDate</span>
+                                <span class="line"></span>
+                            </div>
+                        }
+                        -->
+                    </div>
+                </div>
+                <p class="level-descr">
+                    Ты&nbsp;можешь рассказать о&nbsp;себе и&nbsp;понять медленную речь.
+                </p>
+            </div>
+            <div class="level-slide swiper-slide">
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Elementary</span>
+                    <div class="level-diagram__block" style="height: 120px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress3"></span>
+                        <!--
+                            @if (DataProgress3 != 0 && DataProgress3 != 100)
+                            {
+                                <div class="last-point" data-point="@ViewBag.lastPos">
+                                    <span class="line"></span>
+                                    <span class="date">@ViewBag.lastPosDate</span>
+                                    <span class="line"></span>
+                                </div>
+                            }
+                            -->
+
+                    </div>
+                </div>
+                <p class="level-descr">
+                    Ты&nbsp;можешь сказать простые фразы и&nbsp;предложения на&nbsp;повседневные ситуации, если приложишь усилия.
+                </p>
+            </div>
+            <div class="level-slide swiper-slide">
+
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Pre-intermediate</span>
+                    <div class="level-diagram__block" style="height: 150px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress4"></span>
+
+                        <!--
+                        @if (DataProgress4 != 0 && DataProgress4 != 100)
+                        {
+                            <div class="last-point" data-point="@ViewBag.lastPos">
+                                <span class="line"></span>
+                                <span class="date">@ViewBag.lastPosDate</span>
+                                <span class="line"></span>
+                            </div>
+                        }
+                        -->
+                    </div>
+                </div>
+                <p class="level-descr">
+                    Ты&nbsp;уже не&nbsp;новичок и&nbsp;твои навыки позволяют тебе говорить на&nbsp;знакомые темы и&nbsp;все это ты&nbsp;делаешь без переводчика.
+                </p>
+            </div>
+            <div class="level-slide swiper-slide">
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Intermediate</span>
+                    <div class="level-diagram__block" style="height: 180px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress5"></span>
+                        <!--
+                        @if (DataProgress5 != 0 && DataProgress5 != 100)
+                        {
+                            <div class="last-point" data-point="@ViewBag.lastPos">
+                                <span class="line"></span>
+                                <span class="date">@ViewBag.lastPosDate</span>
+                                <span class="line"></span>
+                            </div>
+                        }
+                        -->
+                    </div>
+                </div>
+                <p class="level-descr">
+                    На&nbsp;этом уровне ты&nbsp;уже можешь использовать иностранный язык в&nbsp;знакомых ситуациях, ведь ты&nbsp;уверенно чувствуешь себя,
+                    поэтому спонтанные разговоры тебя не&nbsp;пугают, а&nbsp;привлекают.
+
+                </p>
+            </div>
+            <div class="level-slide swiper-slide">
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Upper-intermediate</span>
+                    <div class="level-diagram__block" style="height: 210px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress6"></span>
+                        <!--
+                        @if (DataProgress6 != 0 && DataProgress6 != 100)
+                        {
+                            <div class="last-point" data-point="@ViewBag.lastPos">
+                                <span class="line"></span>
+                                <span class="date">@ViewBag.lastPosDate</span>
+                                <span class="line"></span>
+                            </div>
+                        }
+                        -->
+                    </div>
+                </div>
+                <p class="level-descr">
+                    Ты&nbsp;уверенно используешь иностранный язык в&nbsp;своей речи: можешь выразить своё мнение как во&nbsp;время
+                    разговора, так и&nbsp;письменно. 
+                </p>
+            </div>
+            <div class="level-slide swiper-slide">
+                <div class="level-diagram">
+                    <span class="level-diagram__name">Advanced</span>
+                    <div class="level-diagram__block" style="height: 240px;">
+                        <span class="level-diagram__progress" data-progress="@DataProgress7"></span>
+                        <!--
+                        @if (DataProgress7 != 0 && DataProgress7 != 100)
+                        {
+                            <div class="last-point" data-point="@ViewBag.lastPos">
+                                <span class="line"></span>
+                                <span class="date">@ViewBag.lastPosDate</span>
+                                <span class="line"></span>
+                            </div>
+                        }
+                        -->
+                    </div>
+                </div>
+                <p class="level-descr">
+                    Ты&nbsp;можешь использовать иностранный язык в&nbsp;любых ситуациях: на&nbsp;работе и&nbsp;на&nbsp;учёбе.
+                    Ты&nbsp;понимаешь сложные темы, даже если у&nbsp;тебя мало знаний по&nbsp;теме. Иностранный&nbsp;&mdash; твой второй язык.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-nav level-nav">
+        <div class="prev" id="levelPrev"><i></i> </div>
+        <div class="count" id="levelProgress">1<span>/6</span></div>
+        <div class="next clickable" id="levelNext"><i></i></div>
+    </div>
+</div>

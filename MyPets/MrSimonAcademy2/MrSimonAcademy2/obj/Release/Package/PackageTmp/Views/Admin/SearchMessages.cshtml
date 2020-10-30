@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.News>
+
+
+@if (Model.Count() == 0)
+{
+    <p>Таких сообщений не найдено</p>
+}
+else
+{
+
+    int i = 0;
+    foreach (var news in Model)
+    {
+        <div class="information-item withActions">
+            <h3>@news.title</h3>
+            <p>
+                @news.message
+            </p>
+            @{
+                DateTime Full = news.added;
+                string year = Full.Year.ToString("00");
+                string month = Full.Month.ToString("00");
+                string day = Full.Day.ToString("00");
+            }
+            <span class="date">@day.@month.@day</span>
+
+
+            <div class="information-item__info">
+                <div>
+                    <span>Сообщение от </span>
+                    <span>@ViewBag.Senders[i]</span>
+                </div>
+                <div>
+                    <span>Сообщение для </span>
+                    <span>@ViewBag.Recipients[i]</span>
+                </div>
+            </div>
+
+            <div class="information-item__actions">
+
+                <a href="~/Admin/DeleteMessage/@news.id" class="action">
+                    Удалить
+                    <img src="~/Content/img_back/icons/close-icon.svg" alt="">
+                </a>
+            </div>
+        </div>
+        i++;
+    }
+
+}

@@ -1,0 +1,181 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+
+}
+
+
+<section class="admin">
+    <h1 class="content-title">Админ панель - Неактивные пользователи </h1>
+
+
+    <div class="admin-wrap">
+        @Html.ActionLink("Вернуться назад", "Index", null, new { @class = "admin-item" })
+
+
+    </div>
+
+    <div class="admin-content">
+        @if (Model.Count() == 0)
+        {
+            <p>Список неактивных пользователей пуст</p>
+        }
+        else
+        {
+            <p style="margin-bottom: 20px">Неактивные пользователи:</p>
+
+            <div class="userlist-wrap">
+
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="userlist-item">
+                        <div class="userlist-item__header">
+                            @if (item.withoutAvatar)
+                            {
+                                <div class="avatar empty">
+                                    <img src="~/Content/img_back/profile/simon-hours.svg" alt="">
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="avatar">
+                                    <img src="https://mrsimon.ru/u_photos/@item.avatarName" alt="">
+                                </div>
+
+                            }
+                            <div class="descr">
+                                @if (item.RoleName == "Student")
+                                {
+                                    @Html.ActionLink(item.UserFName + " " + item.UserLName, "GetUser", new { id = item.Id }, new { @class = "name" })
+                                }
+                                else
+                                {
+                                    <span class="name">@item.UserFName  @item.UserLName</span>
+                                }
+                                @if (item.RoleName == "Teacher")
+                                {
+                                    <span class="type">Учитель</span>
+                                }
+                                @if (item.RoleName == "Admin")
+                                {
+                                    <span class="type">Админ</span>
+                                }
+                                @if (item.RoleName == "Student")
+                                {
+                                    <span class="type">Студент</span>
+                                }
+                            </div>
+                            <div class="actions">
+
+
+                                @if (item.RoleName != "Admin")
+                                {
+                                    <a href="~/Admin/RestoreUser/@item.Id" class="actions-item">
+                                        <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                                        <span>Восстановить</span>
+                                    </a>
+                                }
+
+                                <div class="open">
+                                    <img src="~/Content/img/icons/arrow-icon_blue.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="userlist-item__body">
+                            <div class="actions">
+
+                                @if (item.RoleName != "Admin")
+                                {
+                                    <a href="~/Admin/RestoreUser/@item.Id" class="actions-item">
+                                        <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                                        <span>Восстановить</span>
+                                    </a>
+                                }
+
+                            </div>
+                            <div class="groups-info">
+                                @{
+                                    DateTime shutdownDate = item.shutdownDate;
+                                    string Syear = shutdownDate.Year.ToString("00");
+                                    string Smonth = shutdownDate.Month.ToString("00");
+                                    string Sday = shutdownDate.Day.ToString("00");
+
+                                    string Shour =shutdownDate.Hour.ToString("00"); 
+                                    string Smin =shutdownDate.Minute.ToString("00"); 
+                                    string Ssec =shutdownDate.Second.ToString("00"); 
+
+                                    <div class="groups-info__item">
+                                        <span class="name">Дата отключения:</span>
+                                        <span class="data ">@Sday.@Smonth.@Syear в @Shour:@Smin:@Ssec</span>
+                                    </div>
+                                }
+
+                                <div class="groups-info__item">
+                                    <span class="name">E-mail:</span>
+                                    <span class="data">@item.Email</span>
+                                </div>
+
+                                @if (item.RoleName == "Student")
+                                {
+                                    DateTime FullBD = item.Birthday;
+                                    string year = FullBD.Year.ToString("00");
+                                    string month = FullBD.Month.ToString("00");
+                                    string day = FullBD.Day.ToString("00");
+
+                                    <div class="groups-info__item">
+                                        <span class="name">Дата рождения:</span>
+                                        <span class="data ">@day.@month.@year</span>
+                                    </div>
+                                }
+                                <div class="groups-info__item">
+                                    <span class="name">Пароль:</span>
+                                    <span class="data link">Нажмите здесь, чтобы посмотреть пароль (doesn't work)</span>
+                                </div>
+                                <div class="groups-info__item">
+                                    <span class="name">Уровень:</span>
+                                    <span class="data">@item.levelName</span>
+                                </div>
+                                @if (item.RoleName == "Student")
+                                {
+                                    <div class="groups-info__item">
+                                        <span class="name">Статистика:</span>
+                                        @if (!item.hasFeedback)
+                                        {
+                                            <span class="data">Не добавлена</span>
+                                        }
+                                        else
+                                        {
+                                            DateTime lastFeedback = item.lastFeedback;
+                                            string y = lastFeedback.Year.ToString("00");
+                                            string m = lastFeedback.Month.ToString("00");
+                                            string d = lastFeedback.Day.ToString("00");
+                                            string h = lastFeedback.Hour.ToString("00");
+                                            string minute = lastFeedback.Minute.ToString("00");
+                                            <span class="data">Последняя - @d.@m.@y в @h:@minute</span>
+                                        }
+
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                }
+
+            </div>
+        }
+
+
+
+    </div>
+
+</section>

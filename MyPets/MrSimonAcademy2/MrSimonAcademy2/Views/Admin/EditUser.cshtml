@@ -1,0 +1,235 @@
+﻿@model MrSimonAcademy2.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+
+}
+
+<section class="admin">
+    <a href="~/Admin/Index" class="js-backToThemeList"> <img src="~/Content/img_back/icons/back-icon.svg" alt=""> Вернуться к списку</a>
+    <h1 class="content-title">Редактирование пользователя<span style="font-weight: bold; font-size: 20px"> @Model.UserFName @Model.UserLName </span></h1>
+
+    <div class="admin-add admin-content__item opened">
+
+        @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post, new { id = "EditUser", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <input type="hidden" name="id" value="@Model.Id" />
+
+            <div class="admin-add__block roles">
+
+                <span class="admin-add__text">1. Выберите роль пользователя</span>
+
+                @if (Model.RoleName == "Student")
+                {
+                    <label class="radio">
+                        <input type="radio" name="role" checked value="Student" />
+                        <span class="radio__text"> Студент</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="role" value="Teacher" />
+                        <span class="radio__text"> Учитель</span>
+                    </label>
+
+                    <label class="radio">
+                        <input type="radio" name="role" value="Admin" />
+                        <span class="radio__text"> Админ</span>
+                    </label>
+                }
+                @if (Model.RoleName == "Teacher")
+                {
+                    <label class="radio">
+                        <input type="radio" name="role" value="Student" />
+                        <span class="radio__text"> Студент</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="role" checked value="Teacher" />
+                        <span class="radio__text"> Учитель</span>
+                    </label>
+
+                    <label class="radio">
+                        <input type="radio" name="role" value="Admin" />
+                        <span class="radio__text"> Админ</span>
+                    </label>
+                }
+                @if (Model.RoleName == "Admin")
+                {
+                    <label class="radio">
+                        <input type="radio" name="role" value="Student" />
+                        <span class="radio__text"> Студент</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="role" value="Teacher" />
+                        <span class="radio__text"> Учитель</span>
+                    </label>
+
+                    <label class="radio">
+                        <input type="radio" name="role" checked value="Admin" />
+                        <span class="radio__text"> Админ</span>
+                    </label>
+                }
+
+            </div>
+
+            <div class="admin-add__block adding">
+                <span class="admin-add__text">2. Обновите фотографию фотографию (jpg, jpeg, png)</span>
+
+
+                <div class="input-block ">
+
+                    @if (Model.withoutAvatar)
+                    {
+                        <div class="file-input">
+                            <label for="avatarInput" class="choos">Выберите файл</label>
+                            <input type="file" class="file" id="avatarInput" name="photo" data-img-id="avatar" />
+                        </div>
+                        <div class="file-photo">
+                            <img id="avatar" src="#" alt="" />
+                        </div>
+                        <label class="checkbox">
+                            <input type="checkbox" name="withoutAvatar" value="true" checked id="avatarEmpty" />
+
+                            <span class="checkbox__text"> Стандартное фото</span>
+                        </label>
+                    }
+                    else
+                    {
+                        <div class="file-input">
+                            <label for="avatarInput" class="choos">Выберите файл</label>
+                            <input type="file" class="file" id="avatarInput" name="photo" data-img-id="avatar" />
+                        </div>
+                        <div class="file-photo" style="display: block;">
+                            <img id="avatar" src="https://mrsimon.ru/u_photos/@Model.avatarName" alt="" />
+                        </div>
+                        <label class="checkbox">
+
+                            <input type="checkbox" name="withoutAvatar" value="true" id="avatarEmpty" />
+                            <span class="checkbox__text"> Стандартное фото</span>
+                        </label>
+                    }
+                </div>
+
+            </div>
+
+            <div class="admin-add__block levels">
+
+                <span class="admin-add__text">3. Укажите уровень</span>
+
+                <label class="radio">
+                    @if (Model.levelName == "Starter")
+                    {
+                        <input type="radio" name="level" checked value="Starter" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Starter" />
+                    }
+                    <span class="radio__text"> Starter</span>
+                </label>
+                <label class="radio">
+                    @if (Model.levelName == "Beginner")
+                    {
+                        <input type="radio" name="level" checked value="Beginner" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Beginner" />
+                    }
+                    <span class="radio__text"> Beginner</span>
+                </label>
+                <label class="radio">
+                    @if (Model.levelName == "Elementary")
+                    {
+                        <input type="radio" name="level" checked value="Elementary" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Elementary" />
+                    }
+                    <span class="radio__text"> Elementary</span>
+                </label>
+                <label class="radio">
+                    @if (Model.levelName == "Pre-Intermediate")
+                    {
+                        <input type="radio" name="level" checked value="Pre-Intermediate" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Pre-Intermediate" />
+                    }
+                    <span class="radio__text"> Pre-Intermediate</span>
+                </label>
+                <label class="radio">
+                    @if (Model.levelName == "Intermediate")
+                    {
+                        <input type="radio" name="level" checked value="Intermediate" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Intermediate" />
+                    }
+                    <span class="radio__text"> Intermediate</span>
+                </label>
+                <label class="radio">
+                    @if (Model.levelName == "Beginner")
+                    {
+                        <input type="radio" name="level" checked value="Upper-Intermediate" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Upper-Intermediate" />
+                    }
+                    <span class="radio__text"> Upper-Intermediate</span>
+                </label>
+                <label class="radio">
+                    @if (Model.levelName == "Advanced")
+                    {
+                        <input type="radio" name="level" checked value="Advanced" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="level" value="Advanced" />
+                    }
+                    <span class="radio__text"> Advanced</span>
+                </label>
+            </div>
+            <div class="admin-add__block adding">
+                <span class="admin-add__text">4. Заполните общую информацию</span>
+                <div class="input-block ">
+
+                    <span class="text">Имя</span>
+                    <input type="text" name="UserFName" class="input " placeholder="@Model.UserFName">
+
+
+                </div>
+                <div class="input-block ">
+                    <span class="text">Фамилия</span>
+                    <input type="text" name="UserLName" class="input " placeholder="@Model.UserLName">
+                </div>
+
+                <div class="input-block ">
+                    @{
+                        DateTime FullBD = Model.Birthday;
+                        string year = FullBD.Year.ToString("00");
+                        string month = FullBD.Month.ToString("00");
+                        string day = FullBD.Day.ToString("00");
+                    }
+                    <span class="text">Дата рождения (@day.@month.@year)</span>
+                    <input type="date" name="date" class="input " placeholder="@day.@month.@year" value="">
+                </div>
+
+
+                <input type="submit" class="submit" value="Сохранить">
+                @Html.ActionLink("Назад к списку", "Index", "Admin", new { @class = "back" })
+
+
+            </div>
+        }
+    </div>
+
+
+</section>
+

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Group>
+
+<div class="theme-all admin-content__item opened">
+    <div class="admin-actions">
+
+        @using (Ajax.BeginForm("SearchTheme", "Teacher", new AjaxOptions { UpdateTargetId = "Theme-Results", LoadingElementId = "Theme-loading" }, new { @class = "search" }))
+        {
+            <span class="search-text">Поиск темы:</span>
+            <input class="search-input" type="text" name="fragment" placeholder="Название темы или группы">
+            <input type="submit" value="" class="search-submit">
+        }
+
+        <!--
+            <div class="admin-actions__item js-AddMessageForAll">Сообщение для всех</div>
+        -->
+
+    </div>
+    @if (Model.Count() == 0)
+    {
+        <p> У Вас еще нет групп, чтобы добавить тему. Если это ошибка, обратитесь к администратору</p>
+    }
+    else
+    {
+        <div id="Theme-loading" style="display:none;">
+            <p>Идет загрузка...</p>
+        </div>
+
+        <div class="theme-admin" id="Theme-Results">
+
+
+            @foreach (var g in Model)
+            {
+
+                <div class="group-theme">
+                    <div class="group-theme__head">
+                        <div class="name">@g.GroupName <span>(тем: @g.ThemeList.Count)</span> </div>
+                        <div class="actions">
+                            <div class="actions-item js-toAddingTheme" data-id="@g.Id" data-group="@g.GroupName" data-reternUrl="Theme">
+                                <img src="~/Content/img_back/icons/theme-icon.svg" alt="" class="icon">
+                                <span>+ Тема</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group-theme__body">
+                        @{
+                            int j = 1;
+                        }
+                        @foreach (var th in g.ThemeList)
+                        {
+                            <a href="~/Teacher/GetTheme/@th.Id" class="group-theme__item">
+                                <span class="count">@j.</span>
+                                <span class="name">
+                                    @th.themeName
+                                </span>
+                                <div class="files-count">
+                                    <span>Файлов:</span>
+                                    <span>@th.AssignmentList.Count()</span>
+                                </div>
+                            </a>
+                            j++;
+                        }
+                        @if (j == 1)
+                        {
+                            <div class="group-theme__item">
+                                <span class="name">
+                                    Список тем пуст
+                                </span>
+
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            }
+
+
+        </div>
+
+    }
+
+</div>
+
+
+
+
+
+

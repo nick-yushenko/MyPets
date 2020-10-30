@@ -1,0 +1,25 @@
+﻿
+
+<div class="menu-back-profile">
+    @if (ViewBag.withoutAvatar)
+    {
+        <div class="avatar empty">
+            <img src="~/Content/img_back/profile/simon-hours.svg" alt="">
+        </div>
+
+    }
+    else
+    {
+        <div class="avatar">
+            <img src="https://mrsimon.ru/u_photos/@ViewBag.avatarName" alt="">
+        </div>
+
+    }
+    <div class="descr">
+        <span class="role">@ViewBag.RoleName</span>
+        <span class="bold">@ViewBag.UserName</span>
+
+
+    </div>
+
+</div>

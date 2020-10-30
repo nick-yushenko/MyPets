@@ -1,0 +1,82 @@
+﻿
+<div class="admin-add admin-content__item js-admin-AddFile ">
+    <p>Добавление задания в тему Crime And Punishment</p>
+
+    @using (Html.BeginForm("AddFile", "Admin", FormMethod.Post, new { id = "AddTaskForTheme", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input type="hidden" name="themeId" value="@ViewBag.themeId" />
+
+        <div class="admin-add__block levels" style="margin-bottom: 15px;">
+
+            <span class="admin-add__text">1. Выберите тип задания</span>
+
+            <label class="radio">
+                <input type="radio" name="type" value="Audio" class="js-fileType" />
+                <span class="radio__text"> Аудио-задание</span>
+            </label>
+            <!--
+            <label class="radio">
+                <input type="radio" name="type" value="Video" class="js-fileType" />
+                <span class="radio__text"> Просмотр видео</span>
+            </label>
+            <label class="radio">
+                <input type="radio" name="type" value="Picture" class="js-fileType" />
+                <span class="radio__text"> Работа с картинкой</span>
+            </label>
+             -->
+            <label class="radio">
+                <input type="radio" name="type" value="Link" class="js-fileType" />
+                <span class="radio__text"> Переход по ссылке</span>
+            </label>
+            <label class="radio">
+                <input type="radio" name="type" value="Download" checked class="js-fileType" />
+                <span class="radio__text"> Скачивание файла</span>
+            </label>
+        </div>
+
+        <div class="admin-add__block adding">
+            <span class="admin-add__text">2. Укажите задание</span>
+
+            <div class="input-block ">
+                <span class="text">Что нужно сделать:</span>
+                <textarea rows="10" cols="45" class="input" name="task"
+                          placeholder="Прослушайте аудио и ответьте на вопрос: Какое преступление совершил Джон Уик?"></textarea>
+            </div>
+        </div>
+
+        <div class="admin-add__block adding js-inputForFile">
+            <span class="admin-add__text">3. Загрузите файл</span>
+
+            <div class="input-block ">
+
+                <div class="file-input">
+                    <input type="file" class="file" id="AddFile" name="file" data-list-id="avatar" />
+                    <label for="AddFile" class="choos">Выберите файл</label>
+
+                </div>
+                <div class="file-list">
+                    <p></p>
+                </div>
+
+            </div>
+            <div class="input-block ">
+                <span class="text">Укажите имя файла (например: Диалог в саду)</span>
+                <input type="text" name="name" class="input link " placeholder="Краткое описание содержимого файла">
+            </div>
+
+        </div>
+
+        <div class="admin-add__block adding js-inputForLink" style="display: none;">
+            <span class="admin-add__text">3. Укажите ссылку на ресурс</span>
+            <div class="input-block ">
+                <input type="text" name="link" class="input " placeholder="https://">
+            </div>
+
+        </div>
+        <input type="submit" class="submit" value="Добавить">
+        <div class="back js-backToAllMessages" data-location="admin-files">Назад к списку</div>
+    }
+</div>

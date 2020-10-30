@@ -1,0 +1,42 @@
+﻿@using MrSimonAcademy2.Models
+@model LoginModel
+@{
+    Layout = "~/Views/Shared/_login.cshtml";
+
+}
+
+<section class="login">
+    <div class="wrap">
+        <h1 class="section-title">Добро пожаловать <span class="br"></span> в личный кабинет</h1>
+        <span class="section-subtitle">
+            Если у Вас еще нет логина и пароля, или&nbsp;Вы&nbsp;забыли&nbsp;их, <span class="br"></span>
+            <span class="primary"> обратитесь к своему преподавателю</span>
+        </span>
+
+   
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="input-block ">
+                <span class="text">Логин (E-mail адрес)</span>
+                @Html.TextBoxFor(m => m.Email, new { @class = "input", placeholder = "Введите логин", required = true })
+            </div>
+
+            <div class="input-block ">
+                <span class="text">Пароль</span>
+                @Html.PasswordFor(m => m.Password, new { @class = "input password", placeholder = "Введите пароль", required = true })
+
+            </div>
+    
+            <br>
+            <div id="success"></div>
+            <button type="submit" class="submit">Войти</button>
+
+        }
+    </div>
+</section>
+
+
+

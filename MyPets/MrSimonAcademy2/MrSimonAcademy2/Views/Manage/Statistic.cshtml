@@ -1,0 +1,33 @@
+﻿@model MrSimonAcademy2.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+<section class="statistic">
+    <h1 class="content-title">Статистика <span class="statistic-subtitle">(Английский)</span></h1>
+
+    <div class="statistic-wrap">
+
+        @if (!ViewBag.hasFeedback) 
+        { 
+            <h3>У Вас еще нет статистики. Не волнуйтесь, Ваш преподаватель скоро ее добавит</h3>
+        }
+        else
+        {
+
+            @Html.Action("Attendance", "Manage", new { userId = Model.Id })
+            @Html.Action("Homework", "Manage", new { userId = Model.Id })
+            @Html.Action("Activity", "Manage", new { userId = Model.Id })
+            @Html.Action("Hours", "Manage", new { userId = Model.Id })
+            @Html.Action("Adventures", "Manage", new { userId = Model.Id })
+            @Html.Action("Skills", "Manage", new { userId = Model.Id })
+            @Html.Action("Level", "Manage", new { userId = Model.Id })
+
+        }
+
+
+    </div>
+
+</section>

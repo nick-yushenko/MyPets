@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8877D2B2-3D21-40FA-8A5A-326A730EF849}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyPets</RootNamespace>
+    <AssemblyName>MyPets</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44379</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.8\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.DiskCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.DiskCache.4.2.8\lib\net45\ImageResizer.Plugins.DiskCache.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.PrettyGifs, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.PrettyGifs.4.2.8\lib\net45\ImageResizer.Plugins.PrettyGifs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.17.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.9.17.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Comparers.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\Service.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008240719194_Initial.cs" />
+    <Compile Include="Migrations\202008240719194_Initial.Designer.cs">
+      <DependentUpon>202008240719194_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008240744571_update.cs" />
+    <Compile Include="Migrations\202008240744571_update.Designer.cs">
+      <DependentUpon>202008240744571_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009060852261_updateFeedback.cs" />
+    <Compile Include="Migrations\202009060852261_updateFeedback.Designer.cs">
+      <DependentUpon>202009060852261_updateFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009061233438_updateFeedback1.cs" />
+    <Compile Include="Migrations\202009061233438_updateFeedback1.Designer.cs">
+      <DependentUpon>202009061233438_updateFeedback1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009061353100_updateFeedback2.cs" />
+    <Compile Include="Migrations\202009061353100_updateFeedback2.Designer.cs">
+      <DependentUpon>202009061353100_updateFeedback2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009131240147_updateFeedback3.cs" />
+    <Compile Include="Migrations\202009131240147_updateFeedback3.Designer.cs">
+      <DependentUpon>202009131240147_updateFeedback3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009131251178_updateIdentity.cs" />
+    <Compile Include="Migrations\202009131251178_updateIdentity.Designer.cs">
+      <DependentUpon>202009131251178_updateIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009270551199_update user.cs" />
+    <Compile Include="Migrations\202009270551199_update user.Designer.cs">
+      <DependentUpon>202009270551199_update user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009271223001_update group.cs" />
+    <Compile Include="Migrations\202009271223001_update group.Designer.cs">
+      <DependentUpon>202009271223001_update group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009271246476_updateuser12.cs" />
+    <Compile Include="Migrations\202009271246476_updateuser12.Designer.cs">
+      <DependentUpon>202009271246476_updateuser12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009301031343_news.cs" />
+    <Compile Include="Migrations\202009301031343_news.Designer.cs">
+      <DependentUpon>202009301031343_news.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009301039509_AddNews.cs" />
+    <Compile Include="Migrations\202009301039509_AddNews.Designer.cs">
+      <DependentUpon>202009301039509_AddNews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010032330171_updateUser1.cs" />
+    <Compile Include="Migrations\202010032330171_updateUser1.Designer.cs">
+      <DependentUpon>202010032330171_updateUser1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010040905375_updateUser11.cs" />
+    <Compile Include="Migrations\202010040905375_updateUser11.Designer.cs">
+      <DependentUpon>202010040905375_updateUser11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010041322109_updateUser01.cs" />
+    <Compile Include="Migrations\202010041322109_updateUser01.Designer.cs">
+      <DependentUpon>202010041322109_updateUser01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010060301370_updateRegisterModel.cs" />
+    <Compile Include="Migrations\202010060301370_updateRegisterModel.Designer.cs">
+      <DependentUpon>202010060301370_updateRegisterModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010061257171_updateNewsModel.cs" />
+    <Compile Include="Migrations\202010061257171_updateNewsModel.Designer.cs">
+      <DependentUpon>202010061257171_updateNewsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010061521436_updateNewsModel1.cs" />
+    <Compile Include="Migrations\202010061521436_updateNewsModel1.Designer.cs">
+      <DependentUpon>202010061521436_updateNewsModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010061545533_updateNewsModel2.cs" />
+    <Compile Include="Migrations\202010061545533_updateNewsModel2.Designer.cs">
+      <DependentUpon>202010061545533_updateNewsModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010061559052_updateNewsModel3.cs" />
+    <Compile Include="Migrations\202010061559052_updateNewsModel3.Designer.cs">
+      <DependentUpon>202010061559052_updateNewsModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010061626549_updateNewsModel4.cs" />
+    <Compile Include="Migrations\202010061626549_updateNewsModel4.Designer.cs">
+      <DependentUpon>202010061626549_updateNewsModel4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010081938100_updateNewsModel5.cs" />
+    <Compile Include="Migrations\202010081938100_updateNewsModel5.Designer.cs">
+      <DependentUpon>202010081938100_updateNewsModel5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010081950258_updateNewsModel6.cs" />
+    <Compile Include="Migrations\202010081950258_updateNewsModel6.Designer.cs">
+      <DependentUpon>202010081950258_updateNewsModel6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010081951017_updateNewsModel7.cs" />
+    <Compile Include="Migrations\202010081951017_updateNewsModel7.Designer.cs">
+      <DependentUpon>202010081951017_updateNewsModel7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010091933574_AddThemeModel.cs" />
+    <Compile Include="Migrations\202010091933574_AddThemeModel.Designer.cs">
+      <DependentUpon>202010091933574_AddThemeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010091941419_UpdateThemeModel.cs" />
+    <Compile Include="Migrations\202010091941419_UpdateThemeModel.Designer.cs">
+      <DependentUpon>202010091941419_UpdateThemeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092228104_UpdateThemeModel1.cs" />
+    <Compile Include="Migrations\202010092228104_UpdateThemeModel1.Designer.cs">
+      <DependentUpon>202010092228104_UpdateThemeModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092232482_UpdateThemeModel2.cs" />
+    <Compile Include="Migrations\202010092232482_UpdateThemeModel2.Designer.cs">
+      <DependentUpon>202010092232482_UpdateThemeModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092236260_UpdateThemeModel3.cs" />
+    <Compile Include="Migrations\202010092236260_UpdateThemeModel3.Designer.cs">
+      <DependentUpon>202010092236260_UpdateThemeModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092247582_UpdateThemeModel4.cs" />
+    <Compile Include="Migrations\202010092247582_UpdateThemeModel4.Designer.cs">
+      <DependentUpon>202010092247582_UpdateThemeModel4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092259574_UpdateThemeModel5.cs" />
+    <Compile Include="Migrations\202010092259574_UpdateThemeModel5.Designer.cs">
+      <DependentUpon>202010092259574_UpdateThemeModel5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092314033_UpdateThemeModel6.cs" />
+    <Compile Include="Migrations\202010092314033_UpdateThemeModel6.Designer.cs">
+      <DependentUpon>202010092314033_UpdateThemeModel6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092324311_UpdateThemeModel7.cs" />
+    <Compile Include="Migrations\202010092324311_UpdateThemeModel7.Designer.cs">
+      <DependentUpon>202010092324311_UpdateThemeModel7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092326586_UpdateThemeModel8.cs" />
+    <Compile Include="Migrations\202010092326586_UpdateThemeModel8.Designer.cs">
+      <DependentUpon>202010092326586_UpdateThemeModel8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010092328055_UpdateThemeModel9.cs" />
+    <Compile Include="Migrations\202010092328055_UpdateThemeModel9.Designer.cs">
+      <DependentUpon>202010092328055_UpdateThemeModel9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010121552049_UpdateThemeModel10.cs" />
+    <Compile Include="Migrations\202010121552049_UpdateThemeModel10.Designer.cs">
+      <DependentUpon>202010121552049_UpdateThemeModel10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010131053508_UpdateThemeModel11.cs" />
+    <Compile Include="Migrations\202010131053508_UpdateThemeModel11.Designer.cs">
+      <DependentUpon>202010131053508_UpdateThemeModel11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010131059221_UpdateThemeModel12.cs" />
+    <Compile Include="Migrations\202010131059221_UpdateThemeModel12.Designer.cs">
+      <DependentUpon>202010131059221_UpdateThemeModel12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010141018403_UpdateThemeModel13.cs" />
+    <Compile Include="Migrations\202010141018403_UpdateThemeModel13.Designer.cs">
+      <DependentUpon>202010141018403_UpdateThemeModel13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010161421556_UpdateThemeModel14.cs" />
+    <Compile Include="Migrations\202010161421556_UpdateThemeModel14.Designer.cs">
+      <DependentUpon>202010161421556_UpdateThemeModel14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010170331015_UpdateFeedbackModel.cs" />
+    <Compile Include="Migrations\202010170331015_UpdateFeedbackModel.Designer.cs">
+      <DependentUpon>202010170331015_UpdateFeedbackModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010241229416_updateNewsModel8.cs" />
+    <Compile Include="Migrations\202010241229416_updateNewsModel8.Designer.cs">
+      <DependentUpon>202010241229416_updateNewsModel8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ManageViewModel.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\Theme.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\MrSimonDB.mdf" />
+    <Content Include="App_Data\MrSimonDB_log.ldf">
+      <DependentUpon>MrSimonDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\css\background.min.css" />
+    <Content Include="Content\css\style.min.css" />
+    <Content Include="Content\css\swiper.min.css" />
+    <Content Include="Content\img\about\about-img-1.jpg" />
+    <Content Include="Content\img\about\about-img-2.jpg" />
+    <Content Include="Content\img\about\about-img-3.jpg" />
+    <Content Include="Content\img\cerificates\certificate-1.jpg" />
+    <Content Include="Content\img\cerificates\certificate-2.jpg" />
+    <Content Include="Content\img\cerificates\certificate-3.jpg" />
+    <Content Include="Content\img\cerificates\certificate-background.svg" />
+    <Content Include="Content\img\cerificates\TKT-Module-1.jpg" />
+    <Content Include="Content\img\cerificates\TKT-Module-2.jpg" />
+    <Content Include="Content\img\cerificates\TKT-Module-3.jpg" />
+    <Content Include="Content\img\courses\course-1.jpg" />
+    <Content Include="Content\img\courses\course-2.jpg" />
+    <Content Include="Content\img\courses\course-3.jpg" />
+    <Content Include="Content\img\courses\course-4.jpg" />
+    <Content Include="Content\img\courses\course-5.jpg" />
+    <Content Include="Content\img\courses\price-bg.svg" />
+    <Content Include="Content\img\family\family-1.jpg" />
+    <Content Include="Content\img\family\family-2.jpg" />
+    <Content Include="Content\img\family\family-3.jpg" />
+    <Content Include="Content\img\family\family-4.jpg" />
+    <Content Include="Content\img\family\family-5.jpg" />
+    <Content Include="Content\img\family\family-img_mob-2.jpg" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\favicon.svg" />
+    <Content Include="Content\img\flamp\1.jpg" />
+    <Content Include="Content\img\flamp\2.jpg" />
+    <Content Include="Content\img\flamp\3.jpg" />
+    <Content Include="Content\img\flamp\4.jpg" />
+    <Content Include="Content\img\flamp\avatar-empty-icon.svg" />
+    <Content Include="Content\img\flamp\flamp-icon.svg" />
+    <Content Include="Content\img\flamp\star-icon.svg" />
+    <Content Include="Content\img\flamp\star_full-icon.svg" />
+    <Content Include="Content\img\founder\founder-img.jpg" />
+    <Content Include="Content\img\icons\address-icon.svg" />
+    <Content Include="Content\img\icons\advantage-icon.svg" />
+    <Content Include="Content\img\icons\arrow-icon_blue.svg" />
+    <Content Include="Content\img\icons\arrow-icon_white.svg" />
+    <Content Include="Content\img\icons\checkbox-icon.svg" />
+    <Content Include="Content\img\icons\close-icon.svg" />
+    <Content Include="Content\img\icons\footer-icon.svg" />
+    <Content Include="Content\img\icons\gruop-icon.svg" />
+    <Content Include="Content\img\icons\like-icon.svg" />
+    <Content Include="Content\img\icons\medal-icon.svg" />
+    <Content Include="Content\img\icons\phone-icon.svg" />
+    <Content Include="Content\img\icons\zoom-icon.svg" />
+    <Content Include="Content\img\logo-mini.svg" />
+    <Content Include="Content\img\logo.svg" />
+    <Content Include="Content\img\menu-close-icon.svg" />
+    <Content Include="Content\img\menu-icon.svg" />
+    <Content Include="Content\img\meta-img.jpg" />
+    <Content Include="Content\img\methods\methods-message.svg" />
+    <Content Include="Content\img\methods\new-york.svg" />
+    <Content Include="Content\img\methods\Simon.svg" />
+    <Content Include="Content\img\simon\login-bg.svg" />
+    <Content Include="Content\img\simon\london-background.svg" />
+    <Content Include="Content\img\simon\london-mini.svg" />
+    <Content Include="Content\img\simon\message.svg" />
+    <Content Include="Content\img\simon\sended-message.svg" />
+    <Content Include="Content\img\simon\simon-404.svg" />
+    <Content Include="Content\img\simon\Simon-hello.svg" />
+    <Content Include="Content\img\simon\simon-modal-brif.svg" />
+    <Content Include="Content\img\step\step-1-icon.svg" />
+    <Content Include="Content\img\step\step-2-icon.svg" />
+    <Content Include="Content\img\step\step-3-icon.svg" />
+    <Content Include="Content\img\step\step-4-icon.svg" />
+    <Content Include="Content\img\toTop-icon.svg" />
+    <Content Include="Content\img_back\icons\files\download-icon.svg" />
+    <Content Include="Content\img_back\icons\files\edit-icon.svg" />
+    <Content Include="Content\img_back\icons\files\film-icon.svg" />
+    <Content Include="Content\img_back\icons\files\link-icon.svg" />
+    <Content Include="Content\img_back\icons\files\music-icon.svg" />
+    <Content Include="Content\img_back\icons\files\picture-icon.svg" />
+    <Content Include="Content\img_back\icons\files\play-icon.svg" />
+    <Content Include="Content\img_back\icons\files\upload-icon.svg" />
+    <Content Include="Content\img_back\icons\add-message-icon.svg" />
+    <Content Include="Content\img_back\icons\delete-icon_white.svg" />
+    <Content Include="Content\img_back\icons\edit-icon.svg" />
+    <Content Include="Content\img_back\icons\add-statistic-icon.svg" />
+    <Content Include="Content\img_back\icons\add-theme-icon.svg" />
+    <Content Include="Content\img_back\icons\back-icon.svg" />
+    <Content Include="Content\img_back\icons\ban-icon.svg" />
+    <Content Include="Content\img_back\icons\close-icon.svg" />
+    <Content Include="Content\img_back\icons\gettheme\download.svg" />
+    <Content Include="Content\img_back\icons\gettheme\download_active.svg" />
+    <Content Include="Content\img_back\icons\gettheme\gotolink.svg" />
+    <Content Include="Content\img_back\icons\gettheme\gotolink_active.svg" />
+    <Content Include="Content\img_back\icons\gettheme\listen.svg" />
+    <Content Include="Content\img_back\icons\gettheme\listen_active.svg" />
+    <Content Include="Content\img_back\icons\info-icon.svg" />
+    <Content Include="Content\img_back\icons\pin-icon.svg" />
+    <Content Include="Content\img_back\icons\player\loop-icon.svg" />
+    <Content Include="Content\img_back\icons\player\pause-icon.svg" />
+    <Content Include="Content\img_back\icons\player\play-icon.svg" />
+    <Content Include="Content\img_back\icons\player\volume-off-icon.svg" />
+    <Content Include="Content\img_back\icons\player\volume-on-icon.svg" />
+    <Content Include="Content\img_back\icons\search-icon.svg" />
+    <Content Include="Content\img_back\icons\theme-icon.svg" />
+    <Content Include="Content\img_back\main\avatar-1.jpg" />
+    <Content Include="Content\img_back\main\avatar-empty.svg" />
+    <Content Include="Content\img_back\main\avatar.png" />
+    <Content Include="Content\img_back\profile\hours-message.svg" />
+    <Content Include="Content\img_back\profile\simon-hours.svg" />
+    <Content Include="Content\js\back.js" />
+    <Content Include="Content\js\components\audioPlayer.js" />
+    <Content Include="Content\js\components\cookie.js" />
+    <Content Include="Content\js\components\droplist.js" />
+    <Content Include="Content\js\components\jquery.spincrement.min.js" />
+    <Content Include="Content\js\components\menu.js" />
+    <Content Include="Content\js\components\preloader.js" />
+    <Content Include="Content\js\index.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.mask.min.js" />
+    <Content Include="Content\js\jquery.validate.min.js" />
+    <Content Include="Content\js\swiper.min.js" />
+    <Content Include="e_img\logo.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\css\background.min.css.map" />
+    <Content Include="Content\css\style.min.css.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_Layout_login.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Account\EmailError.cshtml" />
+    <Content Include="Views\Home\ContactForm.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Groups.cshtml" />
+    <Content Include="Views\Admin\AddGroup.cshtml" />
+    <Content Include="Views\Manage\MyGroups.cshtml" />
+    <Content Include="Views\Admin\EditGroup.cshtml" />
+    <Content Include="Views\Admin\SearchGroup.cshtml" />
+    <Content Include="Views\Admin\SearchUser.cshtml" />
+    <Content Include="Views\Manage\AddDeclarationForGroup.cshtml" />
+    <Content Include="Views\Feedback\AddFeedbackForUser.cshtml" />
+    <Content Include="Views\Manage\GetFeedback.cshtml" />
+    <Content Include="Views\Manage\GetFeedbackForLevel.cshtml" />
+    <Content Include="Views\Home\Simon_block1.cshtml" />
+    <Content Include="Views\Home\About_block2.cshtml" />
+    <Content Include="Views\Home\Methods_block3.cshtml" />
+    <Content Include="Views\Home\Founder_block4.cshtml" />
+    <Content Include="Views\Home\Family_block5.cshtml" />
+    <Content Include="Views\Home\Steps_block6.cshtml" />
+    <Content Include="Views\Home\Courses_block7.cshtml" />
+    <Content Include="Views\Home\Flamp_block8.cshtml" />
+    <Content Include="Views\Home\Brif_block9.cshtml" />
+    <Content Include="Views\Home\BrifModal.cshtml" />
+    <Content Include="Views\Home\PrivacyModal.cshtml" />
+    <Content Include="Views\Shared\_login.cshtml" />
+    <Content Include="Views\Home\AcceptCookie.cshtml" />
+    <Content Include="Views\Student\News.cshtml" />
+    <Content Include="Views\Manage\HeaderProfile.cshtml" />
+    <Content Include="Views\Manage\MenuProfile.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Manage\Statistic.cshtml" />
+    <Content Include="Views\Manage\Skills.cshtml" />
+    <Content Include="Views\Manage\Attendance.cshtml" />
+    <Content Include="Views\Manage\Homework.cshtml" />
+    <Content Include="Views\Manage\Activity.cshtml" />
+    <Content Include="Views\Manage\Hours.cshtml" />
+    <Content Include="Views\Manage\Adventures.cshtml" />
+    <Content Include="Views\Admin\AddStatistic.cshtml" />
+    <Content Include="Views\Teacher\Users.cshtml" />
+    <Content Include="Views\Teacher\SearchUser.cshtml" />
+    <Content Include="Views\Teacher\AddStatistic.cshtml" />
+    <Content Include="Views\Admin\DisabledUsers.cshtml" />
+    <Content Include="Views\Student\MyGroups.cshtml" />
+    <Content Include="Views\Teacher\Groups.cshtml" />
+    <Content Include="Views\Teacher\SearchGroup.cshtml" />
+    <Content Include="Views\Admin\News.cshtml" />
+    <Content Include="Views\Manage\Level.cshtml" />
+    <Content Include="Views\Admin\AddMessage.cshtml" />
+    <Content Include="Views\Teacher\News.cshtml" />
+    <Content Include="Views\Admin\AddMessageForAll.cshtml" />
+    <Content Include="Views\Admin\AllMessages.cshtml" />
+    <Content Include="Views\Admin\SearchMessages.cshtml" />
+    <Content Include="Views\Teacher\SearchMessages.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Admin\AddTheme.cshtml" />
+    <Content Include="Views\Admin\Themes.cshtml" />
+    <Content Include="Views\Admin\AllThemes.cshtml" />
+    <Content Include="Views\Admin\SearchTheme.cshtml" />
+    <Content Include="Views\Admin\GetTheme.cshtml" />
+    <Content Include="Views\Admin\AddFile.cshtml" />
+    <Content Include="Views\Teacher\Themes.cshtml" />
+    <Content Include="Views\Teacher\AllThemes.cshtml" />
+    <Content Include="Views\Teacher\SearchTheme.cshtml" />
+    <Content Include="Views\Teacher\AddTheme.cshtml" />
+    <Content Include="Views\Error\Error403.cshtml" />
+    <Content Include="Views\Teacher\GetTheme.cshtml" />
+    <Content Include="Views\Teacher\SearchFile.cshtml" />
+    <Content Include="Views\Teacher\AddFile.cshtml" />
+    <Content Include="Views\Student\Themes.cshtml" />
+    <Content Include="Views\Student\SearchTheme.cshtml" />
+    <Content Include="Views\Student\GetTheme.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Admin\AddMessageForGroup.cshtml" />
+    <Content Include="Views\Teacher\AddMessageForGroup.cshtml" />
+    <Content Include="Views\Teacher\AddMessage.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202008240719194_Initial.resx">
+      <DependentUpon>202008240719194_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008240744571_update.resx">
+      <DependentUpon>202008240744571_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009060852261_updateFeedback.resx">
+      <DependentUpon>202009060852261_updateFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009061233438_updateFeedback1.resx">
+      <DependentUpon>202009061233438_updateFeedback1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009061353100_updateFeedback2.resx">
+      <DependentUpon>202009061353100_updateFeedback2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009131240147_updateFeedback3.resx">
+      <DependentUpon>202009131240147_updateFeedback3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009131251178_updateIdentity.resx">
+      <DependentUpon>202009131251178_updateIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009270551199_update user.resx">
+      <DependentUpon>202009270551199_update user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009271223001_update group.resx">
+      <DependentUpon>202009271223001_update group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009271246476_updateuser12.resx">
+      <DependentUpon>202009271246476_updateuser12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009301031343_news.resx">
+      <DependentUpon>202009301031343_news.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009301039509_AddNews.resx">
+      <DependentUpon>202009301039509_AddNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010032330171_updateUser1.resx">
+      <DependentUpon>202010032330171_updateUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010040905375_updateUser11.resx">
+      <DependentUpon>202010040905375_updateUser11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010041322109_updateUser01.resx">
+      <DependentUpon>202010041322109_updateUser01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010060301370_updateRegisterModel.resx">
+      <DependentUpon>202010060301370_updateRegisterModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010061257171_updateNewsModel.resx">
+      <DependentUpon>202010061257171_updateNewsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010061521436_updateNewsModel1.resx">
+      <DependentUpon>202010061521436_updateNewsModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010061545533_updateNewsModel2.resx">
+      <DependentUpon>202010061545533_updateNewsModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010061559052_updateNewsModel3.resx">
+      <DependentUpon>202010061559052_updateNewsModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010061626549_updateNewsModel4.resx">
+      <DependentUpon>202010061626549_updateNewsModel4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081938100_updateNewsModel5.resx">
+      <DependentUpon>202010081938100_updateNewsModel5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081950258_updateNewsModel6.resx">
+      <DependentUpon>202010081950258_updateNewsModel6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010081951017_updateNewsModel7.resx">
+      <DependentUpon>202010081951017_updateNewsModel7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010091933574_AddThemeModel.resx">
+      <DependentUpon>202010091933574_AddThemeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010091941419_UpdateThemeModel.resx">
+      <DependentUpon>202010091941419_UpdateThemeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092228104_UpdateThemeModel1.resx">
+      <DependentUpon>202010092228104_UpdateThemeModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092232482_UpdateThemeModel2.resx">
+      <DependentUpon>202010092232482_UpdateThemeModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092236260_UpdateThemeModel3.resx">
+      <DependentUpon>202010092236260_UpdateThemeModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092247582_UpdateThemeModel4.resx">
+      <DependentUpon>202010092247582_UpdateThemeModel4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092259574_UpdateThemeModel5.resx">
+      <DependentUpon>202010092259574_UpdateThemeModel5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092314033_UpdateThemeModel6.resx">
+      <DependentUpon>202010092314033_UpdateThemeModel6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092324311_UpdateThemeModel7.resx">
+      <DependentUpon>202010092324311_UpdateThemeModel7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092326586_UpdateThemeModel8.resx">
+      <DependentUpon>202010092326586_UpdateThemeModel8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010092328055_UpdateThemeModel9.resx">
+      <DependentUpon>202010092328055_UpdateThemeModel9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010121552049_UpdateThemeModel10.resx">
+      <DependentUpon>202010121552049_UpdateThemeModel10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010131053508_UpdateThemeModel11.resx">
+      <DependentUpon>202010131053508_UpdateThemeModel11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010131059221_UpdateThemeModel12.resx">
+      <DependentUpon>202010131059221_UpdateThemeModel12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010141018403_UpdateThemeModel13.resx">
+      <DependentUpon>202010141018403_UpdateThemeModel13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010161421556_UpdateThemeModel14.resx">
+      <DependentUpon>202010161421556_UpdateThemeModel14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010170331015_UpdateFeedbackModel.resx">
+      <DependentUpon>202010170331015_UpdateFeedbackModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010241229416_updateNewsModel8.resx">
+      <DependentUpon>202010241229416_updateNewsModel8.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="th_files\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57602</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44379/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

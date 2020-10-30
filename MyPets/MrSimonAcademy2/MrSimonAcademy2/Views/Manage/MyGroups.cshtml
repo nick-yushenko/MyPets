@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Group>
+
+
+
+<section class="section groups">
+    <div class="container">
+        <h2 class="section-title">Мои группы:</h2>
+        <div class="groups-wrap">
+            @if (Model.Count() == 0)
+            {
+                <span> У вас еще нет групп</span>
+            }
+            else
+            {
+                int i = 0;
+                foreach (var g in Model)
+                {
+                    <div class="groups-item">
+                        <div class="groups-item__level">@g.GroupLevel</div>
+                        <h4 class="groups-item__name">@g.GroupName</h4>
+                        @if (g.declaration != null)
+                        { 
+                           <div class="groups-declaration__item" style="width:100%" id="results" >
+                               <span class="groups-declaration__text">@g.declaration</span>
+                           </div>
+                        }
+
+                        @if (this.User.IsInRole("Admin") || this.User.IsInRole("Teacher"))
+                        {
+                            string teacher = @ViewBag.Teachers[i];
+                            <span class="groups-item__teacher"> @Html.ActionLink(teacher, "Profile", new { id = g.GroupTeacherId })</span>
+                        }
+                        else
+                        {
+                            <span class="groups-item__teacher"> @ViewBag.Teachers[i]</span>
+                        }
+                       
+
+                        <div class="groups-students">
+                            <span>Сокурсники:</span>
+                            @foreach (var student in g.GroupStudents)
+                            {
+                                if (student.RoleName != "Teacher")
+                                {
+                                    if (this.User.IsInRole("Admin") || this.User.IsInRole("Teacher"))
+                                    {
+                                        @Html.ActionLink(@student.UserFName + " " + @student.UserLName, "Profile", new { id = student.Id }, new { @class="groups-students__item"}) <br>
+                                    }
+                                    else
+                                    {
+                                        <span class="groups-students__item">@student.UserFName @student.UserLName</span>
+                                    }
+                                }
+                            }
+                        </div>
+                   
+                        @if ((this.User.IsInRole("Teacher") && g.GroupTeacherId == ViewBag.UserId) || this.User.IsInRole("Admin"))
+                        { 
+
+                            <div class="groups-declaration">
+                       
+                                @using (Ajax.BeginForm("AddDeclarationForGroup", new AjaxOptions { UpdateTargetId = "results" }))
+                                { 
+                                    <input type="hidden" name="groupId" value="@g.Id" />
+                                    <input type="text" name="declaration" placeholder="Добавить объявление">
+                                    <input type="submit" value="->">
+                                }
+
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</section>

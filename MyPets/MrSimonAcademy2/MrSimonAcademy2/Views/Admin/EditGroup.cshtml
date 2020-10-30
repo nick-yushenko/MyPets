@@ -1,0 +1,327 @@
+﻿@model MrSimonAcademy2.Models.Group
+
+@{
+    ViewBag.Title = "AddGroup";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+
+
+    <div class="admin-add admin-content__item js-admin-addgroup opened ">
+        <a href="~/Admin/Index" class="js-backToThemeList"> <img src="~/Content/img_back/icons/back-icon.svg" alt=""> Вернуться к списку</a>
+        <h1 class="content-title">Редактирование группы<span style="font-weight: bold; font-size: 20px"> @Model.GroupName </span></h1>
+
+        @using (Html.BeginForm("EditGroup", "Admin", FormMethod.Post, new { id = "EditGroup" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="groupId" value="@Model.Id" />
+
+            <div class="admin-add__block languages">
+
+                <span class="admin-add__text">1. Выберите язык</span>
+
+                <label class="radio">
+                    @if (Model.Language == "Английский")
+                    {
+                        <input type="radio" checked name="language" value="Английский" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="language" value="Английский" />
+
+                    }
+                    <span class="radio__text"> Английский</span>
+                </label>
+                <label class="radio">
+                    @if (Model.Language == "Немецкий")
+                    {
+                        <input type="radio" checked name="language" value="Немецкий" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="language" value="Немецкий" />
+                    }
+
+                    <span class="radio__text"> Немецкий</span>
+                </label>
+
+            </div>
+
+            <div class="admin-add__block types">
+
+                <span class="admin-add__text">2. Укажите тип группы</span>
+
+                <label class="radio">
+                    @if (Model.isPersonal)
+                    {
+                        <input type="radio" checked name="isPersonal" value="true" />
+                    }
+                    else
+                    {
+                        <input type="radio" name="isPersonal" value="true" />
+                    }
+                    <span class="radio__text"> Индивидуальная</span>
+                </label>
+                <label class="radio">
+                    @if (!Model.isPersonal)
+                    {
+                        <input type="radio" checked name="isPersonal" value="false" />
+
+                    }
+                    else
+                    {
+                        <input type="radio" name="isPersonal" value="false" />
+
+                    }
+                    <span class="radio__text"> Групповая</span>
+                </label>
+
+            </div>
+
+
+            <div class="admin-add__block adding">
+                <span class="admin-add__text">3. Заполните соответсвующие поля</span>
+                <div class="input-block ">
+                    <span class="text">Название</span>
+                    <input type="text" name="GroupName" class="input" value="@Model.GroupName" />
+                </div>
+
+                <div class="input-block ">
+                    <span class="text">Уровень группы (A1-C2) </span>
+                    <input type="text" name="GroupLevel" class="input" value="@Model.GroupLevel" />
+                </div>
+                <div class="input-block ">
+                    <span class="text">Расписание</span>
+                    <input type="text" name="days" class="input" value="@Model.days" />
+                </div>
+                <div class="input-block ">
+                    <span class="text">Основной учебник</span>
+                    <input type="text" name="textbook" class="input" value="@Model.textbook" />
+                </div>
+
+            </div>
+
+            <div class="admin-add__block adding">
+                <span class="admin-add__text">4. выберете учителя</span>
+                @{
+                    Dictionary<string, string> teachers = ViewBag.Teachers;
+                }
+                <div class="js-selectedItemWrap teachers selected-wrap">
+                    <div class="selected teacher">
+                        @ViewBag.currentTeacherName
+                        <input class="selected-input" id="teacher" name="teachers" type="hidden" value="@Model.GroupTeacherId">
+                    </div>
+                </div>
+                <div class="select">
+
+                    <input class="select__input" type="hidden" name="">
+                    <div class="select__head">Выберите</div>
+                    <ul class="select__list" style="display: none;">
+
+                        @foreach (KeyValuePair<string, string> item in teachers)
+                        {
+                            <li class="select__item teacher" data-value="@item.Key">@item.Value</li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="admin-add__block adding" style="padding-top: 60px">
+                <span class="admin-add__text">5. Добавьте учеников</span>
+
+                @{
+                    Dictionary<string, string> students = ViewBag.Students;
+                    Dictionary<string, string> currentStudents = ViewBag.CurrentStudents;
+                }
+
+                <div class="js-selectedItemWrap students selected-wrap">
+                    @foreach (KeyValuePair<string, string> item in currentStudents)
+                    {
+                        <div class="selected student">
+                            @item.Value
+                            <input class="selected-input" id="student" name="students" type="hidden" value="@item.Key">
+                        </div>
+                    }
+                </div>
+                <div class="select">
+
+                    <input class="select__input" type="hidden" name="">
+                    <div class="select__head">Выберите</div>
+                    <ul class="select__list" style="display: none;">
+
+                        @foreach (KeyValuePair<string, string> item in students)
+                        {
+                            <li class="select__item student" data-value="@item.Key">@item.Value</li>
+                        }
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+            <input type="submit" class="submit" value="Сохранить">
+            @Html.ActionLink("Назад к списку", "Index", "Admin", new { @class = "back" })
+
+        }
+
+    </div>
+
+
+<!--
+<div class="container">
+    <h2>Редактирование группы @Model.GroupName</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Язык</span>
+                <div class="col-md-6" style="padding-top: 7px">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Тип</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <label>
+                        Индивидуальная
+                        @if (Model.isPersonal)
+                        {
+                            <input type="radio" checked name="isPersonal" value="true" />
+                        }
+                        else
+                        {
+                            <input type="radio" name="isPersonal" value="true" />
+                        }
+                    </label>
+                    <label>
+                        Групповая
+                        @if (!Model.isPersonal)
+                        {
+                            <input type="radio" checked name="isPersonal" value="false" />
+                        }
+                        else
+                        {
+                            <input type="radio" name="isPersonal" value="false" />
+                        }
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Название группы</span>
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Уровень группы (A1-C2)</span>
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GroupLevel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GroupLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Расписание (TODO)</span>
+
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.days, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.days, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="display:flex; align-items:flex-end">
+                <span class="control-label col-md-2">Преподаватель:</span>
+
+                @{
+                    Dictionary<string, string> teachers = ViewBag.Teachers;
+                }
+                <div class="col-md-10">
+                    <div class="js-selectedItemWrap teachers selected-wrap">
+
+                        <div class="selected teacher">
+                            @ViewBag.currentTeacherName
+                            <input class="selected-input" id="teacher" name="teachers" type="hidden" value="@Model.GroupTeacherId">
+                        </div>
+                    </div>
+                    <div class="select">
+
+                        <input class="select__input" type="hidden" name="">
+                        <div class="select__head">Выберите</div>
+                        <ul class="select__list" style="display: none;">
+
+                            @foreach (KeyValuePair<string, string> item in teachers)
+                            {
+                                <li class="select__item teacher" data-value="@item.Key">@item.Value</li>
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group" style="display:flex; align-items:flex-end">
+                <span class="control-label col-md-2">Студенты:</span>
+
+                @{
+                    Dictionary<string, string> students = ViewBag.Students;
+                    Dictionary<string, string> currentStudents = ViewBag.CurrentStudents;
+                }
+                <div class="col-md-10">
+                    <div class="js-selectedItemWrap students selected-wrap">
+                        @foreach (KeyValuePair<string, string> item in currentStudents)
+                        {
+                            <div class="selected student">
+                                @item.Value
+                                <input class="selected-input" id="student" name="students" type="hidden" value="@item.Key">
+                            </div>
+                        }
+                    </div>
+                    <div class="select">
+
+                        <input class="select__input" type="hidden" name="">
+                        <div class="select__head">Выберите</div>
+                        <ul class="select__list" style="display: none;">
+
+                            @foreach (KeyValuePair<string, string> item in students)
+                            {
+                                if (!currentStudents.ContainsKey(item.Key))
+                                {
+                                    <li class="select__item student" data-value="@item.Key">@item.Value</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Сохранить" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Назад", "Groups")
+    </div>
+
+</div>
+    -->

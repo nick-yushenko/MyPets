@@ -1,0 +1,212 @@
+﻿
+@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Новаторский центр изучения английского и немецкого языков в Красноярске. Постоянный набор в новые группы. Первое занятие бесплатно.">
+
+    <meta name="author" content="Nick Yushenko">
+    <meta name="description" content="Mr. Simon Academy - войти в личный кабинет">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/css/swiper.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/Content/css/background.min.css">
+    <title>Mr. Simon Academy</title>
+</head>
+
+<body class="back">
+
+    @Html.Action("AcceptCookie", "Home")
+
+    <div class="player">
+        <div class="player-bg"></div>
+        <div class="close">
+            <img src="~/Content/img_back/icons/delete-icon_white.svg" alt="">
+            <img src="~/Content/img_back/icons/close-icon.svg" alt="">
+        </div>
+        <div class="player-audio notFound">
+
+            <div class="player-audio__NotFound">
+                <p>Упс.. Саймон опять съел Вашу домашку</p>
+            </div>
+            <input class="js-player-audio-src" type="hidden" name="targetLink" value="none">
+            <div class="au">
+                <div class="au-inf">
+                    <span class="au-name">Ошибка загрузки.</span>
+                    <span class="au-pos">00:00 / 00:00</span>
+                </div>
+                <div class="au-thumb">
+                    <span class="au-thumb__progress"></span>
+                </div>
+                <div class="au-actions">
+                    <div class="au-nav">
+                        <div class="au-nav__item act play"><img src="~/Content/img_back/icons/player/play-icon.svg" alt=""></div>
+                        <div class="au-nav__item  pause"><img src="~/Content/img_back/icons/player/pause-icon.svg" alt=""></div>
+                        <div class="au-nav__item act repeat"><img src="~/Content/img_back/icons/player/loop-icon.svg" alt=""></div>
+                        <div class="au-nav__item act volume-on" style="margin-right: 0;"><img src="~/Content/img_back/icons/player/volume-on-icon.svg" alt=""></div>
+                        <div class="au-nav__item  volume-off" style="margin-right: 0;"> <img src="~/Content/img_back/icons/player/volume-off-icon.svg" alt=""></div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+   
+    <header class="header-mini login back scrolled">
+        <div class="wrap header-wrap ">
+            <a href="/" class="header-mini-logo">
+                <img class="header-mini-logo" src="~/Content/img/logo-mini.svg" alt="">
+            </a>
+
+            <nav class="header-nav mini">
+                <a href="/" class="link "> на главную</a>
+                @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="link bold">Выйти</a>
+                }
+
+            </nav>
+
+            @Html.Action("HeaderProfile", "Manage", new { userId = User.Identity.GetUserId() })
+            <div class="burger-back">
+                <img src="~/Content/img/menu-icon.svg" alt="">
+            </div>
+
+        </div>
+    </header>
+
+    <div class="menu-back">
+        <div class="close">
+            <img src="~/Content/img/menu-close-icon.svg" alt="">
+        </div>
+        <div class="menu-back-content">
+            <img src="~/Content/img/logo-mini.svg" alt="" class="logo">
+            <nav class="menu-back-nav">
+
+                @if (User.IsInRole("Student"))
+                {
+                    @Html.ActionLink("Объявления", "News", "Student")
+                    @Html.ActionLink("Мои группы", "MyGroups", "Student", new { userId = User.Identity.GetUserId() }, null)
+                    @Html.ActionLink("Темы и задания", "Themes", "Student")
+                    @Html.ActionLink("Статистика", "Statistic", "Manage", new { userId = User.Identity.GetUserId() }, null)
+
+                }
+                @if (User.IsInRole("Teacher"))
+                {
+                    @Html.ActionLink("Объявления", "News", "Teacher")
+                    @Html.ActionLink("Темы и задания", "Themes", "Teacher")
+                    @Html.ActionLink("Список студентов", "Users", "Teacher")
+                    @Html.ActionLink("Список Групп", "Groups", "Teacher")
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Объявления", "News", "Admin")
+                    @Html.ActionLink("Темы и задания", "Themes", "Admin")
+                    @Html.ActionLink("Админ Панель", "Index", "Admin")
+                }
+
+
+
+            </nav>
+
+            @Html.Action("MenuProfile", "Manage", new { userId = User.Identity.GetUserId() })
+
+            <div class="menu-back-actions">
+                <a href="index.html" class="link bold">На главную</a>
+
+                @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="link bold">Выйти</a>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Main Content -->
+
+    <main class="main" id="main">
+        <div class="wrap full">
+
+            <div class="sidebar">
+
+                <nav class="sidebar-nav">
+                    <span class="title">Меню</span>
+
+                    @if (User.IsInRole("Student"))
+                    {
+                        @Html.ActionLink("Объявления", "News", "Student")
+                        @Html.ActionLink("Мои группы", "MyGroups", "Student", new { userId = User.Identity.GetUserId() }, null)
+                        @Html.ActionLink("Темы и задания", "Themes", "Student")
+                        @Html.ActionLink("Статистика", "Statistic", "Manage", new { userId = User.Identity.GetUserId() }, null)
+
+                    }
+                    @if (User.IsInRole("Teacher"))
+                    {
+                        @Html.ActionLink("Объявления", "News", "Teacher")
+                        @Html.ActionLink("Темы и задания", "Themes", "Teacher")
+                        @Html.ActionLink("Список студентов", "Users", "Teacher")
+                        @Html.ActionLink("Список Групп", "Groups", "Teacher")
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Объявления", "News", "Admin")
+                        @Html.ActionLink("Темы и задания", "Themes", "Admin")
+                        @Html.ActionLink("Админ Панель", "Index", "Admin")
+                    }
+
+
+
+                </nav>
+            </div>
+
+            <div class="content">
+                @RenderBody()
+            </div>
+
+
+        </div>
+    </main>
+    <!-- Footer -->
+
+
+
+    @Scripts.Render("~/content/js/jquery.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+    @Scripts.Render("~/content/js/jquery.validate.min.js")
+    @Scripts.Render("~/content/js/swiper.min.js")
+    @Scripts.Render("~/content/js/components/cookie.js")
+    @Scripts.Render("~/content/js/components/menu.js")
+    @Scripts.Render("~/content/js/components/droplist.js")
+    @Scripts.Render("~/content/js/components/jquery.spincrement.min.js")
+    @Scripts.Render("~/content/js/components/audioPlayer.js")
+
+
+    @Scripts.Render("~/content/js/back.js")
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

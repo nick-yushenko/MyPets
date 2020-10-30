@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<MrSimonAcademy2.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+<section class="information">
+    <h1 class="content-title">Объявления</h1>
+
+    <div class="admin-actions">
+
+        @using (Ajax.BeginForm("SearchMessages", "Teacher", new AjaxOptions { UpdateTargetId = "News-Results", LoadingElementId = "News-loading" }, new { @class = "search" }))
+        {
+            <span class="search-text">Поиск объявления:</span>
+            <input class="search-input" type="text" name="fragment" placeholder="Фргамент сообщения">
+            <input type="submit" value="" class="search-submit">
+        }
+
+
+
+    </div>
+    <div class="information-wrap">
+
+        @if (Model.Count() == 0)
+        {
+            <p style="font-size: 26px; color: #106E83; margin-bottom: 30px">Еще нет сообщений. </p>
+        }
+        else
+        {
+            <div id="News-loading" style="display:none;">
+                <p style="font-size: 26px; color: #106E83; margin-bottom: 30px">Идет загрузка...</p>
+            </div>
+
+            <div class="information-wrap" id="News-Results">
+
+                @foreach (var news in Model)
+                {
+                    <div class="information-item">
+                        <h3>@news.title</h3>
+                        <p>
+                            @news.message
+                        </p>
+                        @{
+                            DateTime Full = news.added;
+                            string year = Full.Year.ToString("00");
+                            string month = Full.Month.ToString("00");
+                            string day = Full.Day.ToString("00");
+                        }
+                        <span class="date">@day.@month.@day</span>
+                    </div>
+                }
+            </div>
+        }
+
+    </div>
+
+</section>

@@ -1,0 +1,244 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Group>
+@using MrSimonAcademy2.Models;
+
+<div class="admin-groups admin-content__item">
+    <div class="admin-actions">
+
+        @using (Ajax.BeginForm("SearchGroup", "Admin", new AjaxOptions { UpdateTargetId = "GResults", LoadingElementId = "Gloading" }, new { @class = "search" }))
+        {
+            <span class="search-text">Поиск группы:</span>
+            <input class="search-input" type="text" name="name" placeholder="Название группы">
+            <input type="submit" value="" class="search-submit">
+        }
+
+        <div class="admin-actions__item js-AddGroup">Добавить группу</div>
+
+    </div>
+    @if (Model.Count() == 0)
+    {
+        <p>Список групп еще пуст. Сначала добавьте группу </p>
+    }
+    else
+    {
+        <div id="Gloading" style="display:none;">
+            <p>Идет загрузка...</p>
+        </div>
+
+        <div class="grouplist-wrap" id="GResults">
+            @{
+                List<int> fileCounts = ViewBag.fileCounts;
+                List<Theme> lastThemes = ViewBag.lastThemes;
+                List<DateTime> lastFiles = ViewBag.lastFiles;
+                int i = 0;
+            }
+            @foreach (var item in Model)
+            {
+                <div class="grouplist-item" data-groupId="@item.Id">
+                    <div class="grouplist-item__head">
+                        <div class="descr">
+                            <span class="name">@item.GroupName, @item.GroupLevel </span>
+
+                            @if (item.isPersonal)
+                            {
+                                <span class="count">Человек: @item.GroupCount (Инд.)</span>
+                            }
+                            else
+                            {
+                                <span class="count">Человек: @item.GroupCount</span>
+                            }
+                            <div class="back"><img src="~/Content/img_back/icons/back-icon.svg" alt=""> Обратно к информации</div>
+
+                        </div>
+                        <div class="actions">
+
+
+                            <a href="~/Admin/AddMessageForGroup/@item.Id" class="actions-item">
+                                <img src="~/Content/img_back/icons/add-message-icon.svg" alt="" class="icon">
+                                <span>+ Сообщение</span>
+                            </a>
+
+
+                            <div class="actions-item js-toAddingTheme" data-id="@item.Id" data-group="@item.GroupName">
+                                <img src="~/Content/img_back/icons/add-theme-icon.svg" alt="" class="icon">
+                                <span>+ Тема/файлы</span>
+                            </div>
+
+                            <a href="~/Admin/EditGroup/@item.Id" class="actions-item">
+                                <img src="~/Content/img_back/icons/edit-icon.svg" alt="" class="icon">
+                                <span>Изменить</span>
+                            </a>
+                            <a href="~/Admin/DeleteGroup/@item.Id" class="actions-item">
+                                <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                                <span>Удалить</span>
+                            </a>
+
+
+                            <div class="open">
+                                <img src="~/Content/img/icons/arrow-icon_blue.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grouplist-item__body">
+                        <div class="actions">
+                            <div class="actions-item js-toAddingTheme" data-id="@item.Id" data-group="@item.GroupName">
+                                <img src="~/Content/img_back/icons/add-theme-icon.svg" alt="" class="icon">
+                                <span>+ Тема/файлы</span>
+                            </div>
+                            <a href="~/Admin/DeleteGroup/@item.Id" class="actions-item">
+                                <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                                <span>Удалить</span>
+                            </a>
+                            <div class="toList">
+                                <span> список </span>
+                                <img src="~/Content/img_back/icons/back-icon.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="groups-info">
+                            <div class="groups-info__item">
+                                <span class="name">Расписание:</span>
+                                <span class="data bold">@item.days</span>
+                            </div>
+                            <div class="groups-info__item">
+                                <span class="name">Язык:</span>
+                                <span class="data">@item.Language</span>
+                            </div>
+                            @{
+                                string teacher = @ViewBag.Teachers[i];
+                            }
+                            <div class="groups-info__item">
+                                <span class="name">Учитель</span>
+                                <span class="data">@teacher </span>
+                            </div>
+                            <div class="groups-info__item">
+                                <span class="name">Тем:</span>
+                                <span class="data ">
+
+                                    @item.ThemeList.Count
+
+                                    @if (lastThemes[i] != null)
+                                    {
+                                        <span class="lastData">Последняя - @lastThemes[i].themeName</span>
+                                    }
+                                </span>
+                            </div>
+                            <div class="groups-info__item">
+                                @{
+                                    DateTime lastFile = new DateTime(1900, 1, 1);
+                                    int fileCounter = 0;
+                                    try
+                                    {
+                                        fileCounter = fileCounts[i];
+                                    }
+                                    catch { }
+                                    if (lastFiles.Count() != 0)
+                                    {
+                                        lastFile = lastFiles[i];
+                                    }
+                                    string y = lastFile.Year.ToString("00");
+                                    string m = lastFile.Month.ToString("00");
+                                    string d = lastFile.Day.ToString("00");
+                                    string h = lastFile.Hour.ToString("00");
+                                    string min = lastFile.Minute.ToString("00");
+                                }
+                                <span class="name">Файлов:</span>
+                                <span class="data ">
+                                    @fileCounter
+
+                                    @if (fileCounts[i] != 0 && y != "1900")
+                                    {
+                                        <span class="lastData">Последний - @d.@m.@y в @h:@min</span>
+                                    }
+                                </span>
+                            </div>
+                            <div class="groups-info__item">
+                                <span class="name">Учебник:</span>
+                                <span class="data">@item.textbook</span>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="grouplist-item__students">
+                        <div class="list">
+                            @{
+                                int j = 1;
+                            }
+
+                            @foreach (var student in item.GroupStudents)
+                            {
+
+
+                                // Не учитель, так как в списке студентов еще и учитель
+                                if (student.RoleName != "Teacher" && student.isActive)
+                                {
+                                    if (student.withoutAvatar)
+                                    {
+
+                                        <p class="" data-img-url="https://mrsimon.ru/Content/img_back/profile/simon-hours.svg" data-IsEmpty="true" data-UserName="@student.UserFName @student.UserLName" data-id="@student.Id">
+                                            <span class="num">@j.</span>
+                                            @student.UserFName @student.UserLName
+                                        </p>
+                                    }
+                                    else
+                                    {
+
+                                        <p class="" data-img-url="https://mrsimon.ru/u_photos/@student.avatarName" data-IsEmpty="false" data-UserName="@student.UserFName @student.UserLName" data-id="@student.Id">
+                                            <span class="num">@j.</span>
+                                            @student.UserFName @student.UserLName
+                                        </p>
+
+                                    }
+
+                                    j++;
+                                }
+
+                            }
+
+
+
+                        </div>
+                        <div class="list-content">
+                            <div class="list-content__card">
+                                <div class="list-content__avatar">
+                                    <img src="~/Content/img_back/main/avatar.png" alt="">
+                                </div>
+                                <div class="actions">
+                                    @using (Html.BeginForm("ExcludeStudent", "Admin", FormMethod.Get))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="groupId" value="none" class="excludeGroupId" />
+                                        <input type="hidden" name="userId" value="none" class="excludeUserId" />
+                                        <div class="actions-item">
+                                            <img src="~/Content/img_back/icons/ban-icon.svg" alt="" class="icon">
+                                            <span>Исключить</span>
+                                        </div>
+                                        <input type="submit" class="submit" value="Добавить">
+                                    }
+
+
+                                    <div class="actions-item js-toAddingStatistic" data-user="ПОЛЬЗОВАТЕЛЬ НЕ ВЫБРАН">
+                                        <img src="~/Content/img_back/icons/add-statistic-icon.svg" alt="" class="icon">
+                                        <span>Статистика</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                i++;
+            }
+
+
+        </div>
+
+    }
+
+
+</div>
+
+
+

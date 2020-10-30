@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+
+}
+
+
+    <section class="admin">
+        <h1 class="content-title">Админ панель</h1>
+
+
+        <div class="admin-wrap">
+
+            <div class="admin-item current " data-location="admin-users">
+                Управление пользователями
+            </div>
+
+            <div class="admin-item " data-location="admin-groups">
+                Управление группами
+            </div>
+        </div>
+
+        @Html.ActionLink("Список отключенных пользователей", "DisabledUsers", null, new { @class = "admin-disabled  " })
+
+        <div class="admin-content">
+            @Html.Action("Register", "Account")
+
+            @Html.Action("AddGroup", "Admin")
+            @Html.Action("AddStatistic", "Admin")
+            @Html.Action("AddMessage", "Admin")
+            @Html.Action("AddTheme", "Admin")
+
+
+            @Html.Action("Users", "Admin")
+            @Html.Action("Groups", "Admin")
+
+
+
+        </div>
+
+    </section>

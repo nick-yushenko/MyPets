@@ -1,0 +1,67 @@
+﻿@model MrSimonAcademy2.Models.ContactViewModel
+
+
+
+<section class="section brif">
+    <div class="wrap">
+        <h2 class="section-title">
+            <span class="text_main"> Где мы находимся,</span> <br> <span class="text_main">
+                и как
+                с нами связаться
+            </span>
+        </h2>
+        <div class="brif-block">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2231.102396437978!2d92.93864431598811!3d55.99957898062006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7affa4089c8ff%3A0x32ff0792f9e37c9d!2z0YPQuy4g0JLQsNCy0LjQu9C-0LLQsCwgNDHQkSwg0JrRgNCw0YHQvdC-0Y_RgNGB0LosINCa0YDQsNGB0L3QvtGP0YDRgdC60LjQuSDQutGA0LDQuSwgNjYwMDI1!5e0!3m2!1sru!2sru!4v1596809664974!5m2!1sru!2sru"
+                        width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+            </div>
+            @using (Html.BeginForm("BrifModal", "Home", FormMethod.Post, new { @class = "form", id = "brif" }))
+            {
+                <h4 class="form-title">Оставьте свои данные, и Саймон обязательно Вам перезонит</h4>
+
+                <div class="input-block">
+                    <span class="text">Номер, на который позвонить</span>
+                    <input type="tel" name="phone" minlength="18" class="input input-phone" placeholder="+7 (___) ___-__-__">
+                </div>
+
+                <div class="input-block">
+                    <span class="text"> Ваше имя</span>
+                    <input type="text" name="Name" class="input" placeholder="Саймон">
+                </div>
+
+                <div class="input-block form-boxes">
+                    <span class="text"> Какой язык интересует</span>
+
+                    <label class="checkbox">
+                        <input type="checkbox" name="language" value="английский" checked>
+                        <span class="checkbox__text"> английский</span>
+                    </label>
+
+                    <label class="checkbox">
+                        <input type="checkbox" name="language" value="немецкий">
+                        <span class=" checkbox__text">немецкий</span>
+                    </label>
+
+                    <label class="checkbox">
+                        <input type="checkbox" name="privacy" id="privacy">
+                        <span class="checkbox__text" style="color: #B6BCBF;">
+                            Я согласен (–на) с
+                            <span class="toPrivacy"> политикой конфиденциальности</span>
+                        </span>
+                    </label>
+                </div>
+
+                <input type="submit" value="Запишите меня на урок" class="form-submit ">
+            }
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</section>

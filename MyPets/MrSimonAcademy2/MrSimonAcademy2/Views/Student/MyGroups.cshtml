@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Group>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+
+}
+
+    <section class="groups">
+        <h1 class="content-title">Мои группы</h1>
+
+        @if (Model.Count() == 0)
+        {
+            <h3>Список групп еще пуст. Пожалуйста, обратитесь к преподавателю</h3>
+        }
+        else
+        {
+            <div class="groups-wrap">
+
+                @{
+                    int i = 0;
+                }
+                @foreach (var g in Model)
+                {
+                    <div class="groups-item">
+                        @if (g.isPersonal)
+                        {
+                            <h2 class="groups-item__name">@g.GroupName, @g.Language, @g.GroupLevel, (Инд.)</h2>
+                        }
+                        else
+                        {
+                            <h2 class="groups-item__name">@g.GroupName, @g.Language, @g.GroupLevel, (Группа)</h2>
+
+                        }
+                        <div class="groups-info">
+                            <div class="groups-info__item">
+                                <span class="name">Занятия:</span>
+                                <span class="data bold">@g.days</span>
+                            </div>
+                            <div class="groups-info__item">
+                                <span class="name">Преподаватель:</span>
+                                <span class="data ">@ViewBag.Teachers[i]</span>
+                            </div>
+                            <div class="groups-info__item">
+                                <span class="name">Основной учебник:</span>
+                                <span class="data">@g.textbook</span>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+
+        }
+
+
+    </section>

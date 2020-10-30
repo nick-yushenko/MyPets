@@ -1,0 +1,36 @@
+﻿@if (ViewBag.hasActivity)
+{
+    <div class="statistic-block activity">
+        <div class="info-btn">
+            <img src="~/Content/img_back/icons/info-icon.svg" alt="">
+        </div>
+        <div class="info-block">
+            Данная статистика заполняется преподавателем и&nbsp;она учитывает заинтересованность и&nbsp;внимательность ученика на&nbsp;каждом уроке.
+        </div>
+        <h2 class="statistic-block__title">Активность и концентрация</h2>
+        <div class="activity-wrap">
+            <div class="activity-nav">
+                <span>Гордимся тобой!!!</span>
+                <span>Большая умничка!</span>
+                <span>Ты молодец!</span>
+                <span>Ты точно сможешь)</span>
+                <span>Фух...</span>
+            </div>
+            <div class="activity-diagram">
+                <div class="bg">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="activity-block" data-count="@ViewBag.Activity"></div>
+                <div class="concentrasion-block" data-count="@ViewBag.Concentration"></div>
+                <div class="descr">
+                    <span>Активность</span>
+                    <span>Концентрация</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

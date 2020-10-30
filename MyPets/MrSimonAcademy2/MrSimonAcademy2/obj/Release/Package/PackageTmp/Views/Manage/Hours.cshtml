@@ -1,0 +1,25 @@
+﻿
+@if (ViewBag.hasHours)
+{
+    <div class="statistic-block hours">
+        <div class="message">
+            <img src="~/Content/img_back/profile/hours-message.svg" alt="">
+            <span class="message-title">Вот сколько часов Вы уже изучаете иностранный язык</span>
+            <span class="message-count" data-count="123456789" id="TotalHours">123456789</span>
+
+            <div class="info-btn">
+                <img src="~/Content/img_back/icons/info-icon.svg" alt="">
+            </div>
+            <div class="info-block">
+                Время, на протяжении которого Вы изучаете иностранный язык, является приблизительным параметром.
+                Расчитывается на основе Ваших индивидуальных характеристик
+            </div>
+        </div>
+        <img src="~/Content/img_back/profile/simon-hours.svg" alt="" class="hours-simon">
+    </div>
+
+}
+else
+{
+    <div class="statistic-block "></div>
+}

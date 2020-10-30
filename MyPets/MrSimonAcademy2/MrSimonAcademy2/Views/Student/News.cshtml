@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+<section class="information">
+    <h1 class="content-title">Объявления</h1>
+
+    <div class="information-wrap">
+
+        @if (Model.Count() == 0)
+        {
+            <h3>Для Вас еще нет объявлений, но не волнуйтесь, скоро что-нибудь появится</h3>
+        }
+        else
+        {
+            foreach (var news in Model)
+
+            {
+
+
+                <div class="information-item">
+                    <h3>@news.title</h3>
+                    <p>
+                        @news.message
+                    </p>
+                    @{
+                        DateTime Full = news.added;
+                        string year = Full.Year.ToString("00");
+                        string month = Full.Month.ToString("00");
+                        string day = Full.Day.ToString("00");
+                    }
+                    <span class="date">@day.@month.@day</span>
+                </div>
+
+
+
+
+            }
+        }
+
+
+    </div>
+
+</section>

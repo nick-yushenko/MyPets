@@ -1,0 +1,63 @@
+﻿
+@if (ViewBag.hasHomework)
+{
+
+    <div class="statistic-block withShadow">
+        <div class="info-btn">
+            <img src="~/Content/img_back/icons/info-icon.svg" alt="">
+        </div>
+        <div class="info-block">
+            Данная статистика заполняется преподавателем. Число заданий указано за&nbsp;весь период обучения в&nbsp;Mr&nbsp;Simon Academy.
+            Выполнение домашних заданий&nbsp;&mdash; очень важный аспект в&nbsp;изучении языка, который позволяет закрепить весь пройденный
+            материал.
+        </div>
+        <h2 class="statistic-block__title">Домашние задания</h2>
+        <div class="statistic-block__info">
+            <span>Всего заданий: <span class="primary" id="HW-totalAmountText">200</span></span>
+            <span>Сдано: <span class="primary" id="HW-passedText">194</span></span>
+        </div>
+        <div class="diagram-wrap homework">
+            <svg class="statistic-block__svg">
+                <!-- data-count - общее количество -->
+                <circle class="statistic-block__circle HW-total" data-count="@ViewBag.total" fill="transparent" stroke="#E7F7FB"
+                        stroke-width="20" cx="80" cy="80" r="70" />
+                <!-- data-count - сколько посещено -->
+                <circle class="statistic-block__circle HW-passed" data-count="@ViewBag.passed" fill="transparent" stroke="#87C0E3"
+                        stroke-width="20" cx="80" cy="80" r="70" />
+
+            </svg>
+            <span class="percent js-homework-percent"></span>
+            <!--
+            <div class="emoji-rating">
+                @if (ViewBag.percentEmoji <= 20)
+                {
+                    <img src="~/Content/img_back/emoji-rating/emoji-1.svg" alt="">
+                }
+                @if (ViewBag.percentEmoji > 20 && ViewBag.percentEmoji <= 40)
+                {
+                    <img src="~/Content/img_back/emoji-rating/emoji-2.svg" alt="">
+                }
+                @if (ViewBag.percentEmoji > 40 && ViewBag.percentEmoji <= 60)
+                {
+                    <img src="~/Content/img_back/emoji-rating/emoji-3.svg" alt="">
+                }
+                @if (ViewBag.percentEmoji > 60 && ViewBag.percentEmoji <= 80)
+                {
+                    <img src="~/Content/img_back/emoji-rating/emoji-4.svg" alt="">
+                }
+                @if (ViewBag.percentEmoji > 80)
+                {
+                    <img src="~/Content/img_back/emoji-rating/emoji-5.svg" alt="">
+                }
+
+
+            </div>
+                -->
+
+        </div>
+
+    </div>
+
+}
+
+

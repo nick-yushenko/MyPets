@@ -1,0 +1,33 @@
+﻿
+@if (ViewBag.Plus != "" && ViewBag.Plus != null)
+{
+    <div class="statistic-block adventures">
+        <h2 class="statistic-block__title">
+            Сильные стороны 
+        </h2>
+        <div class="adventures-text">
+            <p>
+                @ViewBag.Plus
+            </p>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Minus != "" && ViewBag.Minus != null)
+{
+    <div class="statistic-block adventures">
+        <h2 class="statistic-block__title">
+            На что обратить внимание
+        </h2>
+        <div class="adventures-text">
+            <p>
+                @ViewBag.Minus
+            </p>
+
+
+        </div>
+    </div>
+
+}
+
+

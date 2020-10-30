@@ -1,0 +1,95 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Nick Yushenko">
+    <meta name="description" content="Mr. Simon Academy - войти в личный кабинет">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+          rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="shortcut icon" href="~/Content/img/favicon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/Content/css/background.min.css">
+    <title>Страница не найдена</title>
+</head>
+
+<body class="no-active">
+
+
+    <div class="header-mini login scrolled">
+        <div class="wrap header-wrap ">
+            <a href="/" class="header-mini-logo">
+                <img class="header-mini-logo" src="~/Content/img/logo-mini.svg" alt="">
+            </a>
+
+            <nav class="header-nav mini">
+                <a href="/" class="link "> Вернуться назад</a>
+
+            </nav>
+
+            <div class="header-block phone mini login">
+                <img src="~/Content/img/icons/phone-icon.svg" alt="">
+                <p>
+                    <span>Ответим на вопросы:</span>
+
+                    <a href="tel:+79631919149" class="link">+7 (391) 271 91 49</a>
+                    <span class="link">+7 (391) 271 91 49</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <main class="" id="main">
+
+        <section class="login NotFound">
+            <div class="wrap">
+                @if (ViewBag.Title != null)
+                {
+                    <h1 class="section-title">@ViewBag.Title</h1>
+                    <span class="section-subtitle">
+                        @ViewBag.Subtitle
+                        @if (ViewBag.Primary != null)
+                        {
+                            <span class="br"></span>
+                            <span class="primary"> @ViewBag.Primary!</span>
+                        }
+                    </span>
+
+                }
+                else
+                {
+                    <h1 class="section-title">Opps... А тут ничего нет</h1>
+                    <span class="section-subtitle">
+                        Наверное Саймон перегрыз провод<span class="br"></span>
+                        <span class="primary"> Пожалуйста, попробуйте позже</span>
+                    </span>
+
+                }
+
+                <div class="NotFound-img">
+                    <img src="~/Content/img/simon/simon-404.svg" alt="">
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+
+
+</body>
+
+</html>

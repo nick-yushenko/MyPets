@@ -1,0 +1,119 @@
+﻿@model MrSimonAcademy2.Models.RegisterModel
+
+    <div class="admin-add admin-content__item js-admin-adduser ">
+        <p>Регистрация нового пользователя</p>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "AddUserForm", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="admin-add__block roles">
+
+                <span class="admin-add__text">1. Выберите роль пользователя</span>
+
+                <label class="radio">
+                    <input type="radio" name="role" value="Student" />
+                    <span class="radio__text"> Студент</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="role" value="Teacher" />
+                    <span class="radio__text"> Учитель</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="role" value="Admin" />
+                    <span class="radio__text"> Админ</span>
+                </label>
+            </div>
+
+            <div class="admin-add__block adding">
+                <span class="admin-add__text">2. Добавьте фотографию (jpg, jpeg, png)</span>
+
+
+                <div class="input-block ">
+
+                    <div class="file-input">
+                        <label for="avatarInput" class="choos">Выберите файл</label>
+                        <input type="file" class="file" id="avatarInput" name="photo" data-img-id="avatar" />
+                    </div>
+                    <div class="file-photo">
+                        <img id="avatar" src="#" alt="" />
+                    </div>
+                    <label class="checkbox">
+                        @Html.CheckBoxFor(model => model.withoutAvatar, new { id = "avatarEmpty", @checked = "checked" })
+                        <span class="checkbox__text"> Стандартное фото</span>
+                    </label>
+                </div>
+
+            </div>
+            
+            <div class="admin-add__block levels">
+
+                <span class="admin-add__text">3. Укажите уровень</span>
+
+                <label class="radio">
+                    <input type="radio" name="level" value="Starter" />
+                    <span class="radio__text"> Starter</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="level" value="Beginner" />
+                    <span class="radio__text"> Beginner</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="level" value="Elementary" />
+                    <span class="radio__text"> Elementary</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="level" value="Pre-Intermediate" />
+                    <span class="radio__text"> Pre-Intermediate</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="level" value="Intermediate" />
+                    <span class="radio__text"> Intermediate</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="level" value="Upper-Intermediate" />
+                    <span class="radio__text"> Upper-Intermediate</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="level" value="Advanced" />
+                    <span class="radio__text"> Advanced</span>
+                </label>
+            </div>
+            <div class="admin-add__block adding">
+                <span class="admin-add__text">4. Заполните общую информацию</span>
+                <div class="input-block ">
+
+                    <span class="text">Имя</span>
+                    @Html.EditorFor(model => model.UserFName, new { htmlAttributes = new { @class = "input", @placeholder = "Иван" } })
+
+                </div>
+                <div class="input-block ">
+                    <span class="text">Фамилия</span>
+                    @Html.EditorFor(model => model.UserLName, new { htmlAttributes = new { @class = "input", @placeholder = "Иванов" } })
+                </div>
+            
+                <div class="input-block ">
+                    <span class="text">Дата рождения </span>
+                    <input type="date" name="date" class="input " placeholder="дд.мм.гггг">
+                </div>
+                <div class="input-block ">
+                    <span class="text">E-mail (логин) </span>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input", @placeholder = "someemail@email.com" } })
+                </div>
+                <div class="input-block ">
+                    <span class="text">Пароль </span>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input", @placeholder = "Придумайте пароль" } })
+                </div>
+                <div class="input-block ">
+                    <span class="text">Подтверждение пароля </span>
+                    @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "input", @placeholder = "Повторите пароль" } })
+                </div>
+
+
+                <input type="submit" class="submit" value="Добавить">
+                <div class="back js-backToUserList" data-location="admin-users">Назад к списку</div>
+            </div>
+        }
+
+
+    </div>

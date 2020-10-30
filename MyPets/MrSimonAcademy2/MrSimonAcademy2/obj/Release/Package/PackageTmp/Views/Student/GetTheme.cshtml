@@ -1,0 +1,153 @@
+﻿
+@using MrSimonAcademy2.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+
+<section class="student">
+
+    <div class="student-content">
+
+        <div class="student-getTheme ">
+            <a href="~/Student/Themes" class="js-backToThemeList">
+                <img src="~/Content/img_back/icons/back-icon.svg" alt="">
+                Вернуться к темам
+            </a>
+
+            <h1 class="content-title">@ViewBag.GroupName</h1>
+
+        </div>
+
+        <div class="student-nav">
+            <p>
+                Прикреплённые файлы:</>
+
+                <div class="student-nav__wrap">
+                    <div class="student-nav__item current" data-location="StudentListen">
+                        <img src="~/Content/img_back/icons/gettheme/listen.svg" alt="">
+                        <img src="~/Content/img_back/icons/gettheme/listen_active.svg" alt="">
+                        <span> слушать</span>
+                    </div>
+                    <div class="student-nav__item" data-location="StudentGoToLink">
+                        <img src="~/Content/img_back/icons/gettheme/gotolink.svg" alt="">
+                        <img src="~/Content/img_back/icons/gettheme/gotolink_active.svg" alt="">
+                        <span>Перейти</span>
+                    </div>
+                    <div class="student-nav__item" data-location="StudentDownload">
+                        <img src="~/Content/img_back/icons/gettheme/download.svg" alt="">
+                        <img src="~/Content/img_back/icons/gettheme/download_active.svg" alt="">
+                        <span>Скачать</span>
+                    </div>
+                </div>
+
+        </div>
+
+        @{
+            int i = 1;
+        }
+
+
+        <div class="student-block opened js-StudentListen">
+            @if (ViewBag.AudioCount == 0)
+            {
+                <p> Здесь еще нет заданий</p>
+            }
+            else
+            {
+                i = 1;
+
+                foreach (Assignment a in ViewBag.AudioFiles)
+                {
+                    <div class="student-file ">
+                        <div class="student-file__head">
+                            <span class="count">Track @i.</span>
+                            <span class="task">
+                                @a.AssignmentTask
+                            </span>
+                        </div>
+                        <div class="student-file__body">
+                            <div class="btn js-toAuPlayer" data-name="@a.fileName"
+                                 data-url="https://mrsimon.ru/th_files/@a.AssignmentFileName@a.AssignmentFileExpansion">
+                                Запустить
+                                <img src="~/Content/img_back/icons/files/play-icon.svg" alt="">
+                            </div>
+                            <a class="btn" href="~/Teacher/GetFile?AssignmentFileName=@a.AssignmentFileName&expansion=@a.AssignmentFileExpansion&fileName=@a.fileName">Скачать <img src="~/Content/img_back/icons/files/download-icon.svg" alt=""></a>
+
+
+                        </div>
+                    </div>
+                }
+
+            }
+
+
+        </div>
+        <div class="student-block  js-StudentGoToLink">
+            @if (ViewBag.LinkCount == 0)
+            {
+                <p> Здесь еще нет заданий</p>
+            }
+            else
+            {
+                i = 1;
+
+                foreach (Assignment a in ViewBag.LinkFiles)
+                {
+                    <div class="student-file ">
+                        <div class="student-file__head">
+                            <span class="count">Link @i.</span>
+                            <span class="task">
+                                @a.AssignmentTask
+                            </span>
+                        </div>
+                        <div class="student-file__body">
+                            <a href="@a.link" target="_blank" class="btn">Перейти </a>
+                            
+
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+        <div class="student-block  js-StudentDownload">
+
+            @if (ViewBag.DownloadCount == 0)
+            {
+                <p> Здесь еще нет заданий</p>
+            }
+            else
+            {
+                i = 1;
+
+                foreach (Assignment a in ViewBag.DownloadFiles)
+                {
+                    <div class="student-file ">
+                        <div class="student-file__head">
+                            <span class="count">File @i.</span>
+                            <span class="task">
+                                @a.AssignmentTask
+                            </span>
+                        </div>
+                        <div class="student-file__body">
+                            <a class="btn" href="~/Teacher/GetFile?AssignmentFileName=@a.AssignmentFileName&expansion=@a.AssignmentFileExpansion&fileName=@a.fileName">Скачать <img src="~/Content/img_back/icons/files/download-icon.svg" alt=""></a>
+
+
+
+                        </div>
+                    </div>
+                }
+
+            }
+
+
+        </div>
+    </div>
+
+
+
+
+</section>

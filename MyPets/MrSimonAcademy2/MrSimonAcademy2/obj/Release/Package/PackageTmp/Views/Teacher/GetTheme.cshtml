@@ -1,0 +1,262 @@
+﻿@model MrSimonAcademy2.Models.Theme
+@using MrSimonAcademy2.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+<section class="admin">
+    <a href="~/Teacher/Themes" class="js-backToThemeList"> <img src="~/Content/img_back/icons/back-icon.svg" alt=""> Вернуться к темам</a>
+
+    @if (Model.colorTheme == "Blue")
+    {
+        <h1 class="content-title"><div class="theme-color" style="background-color: #87C0E3 "></div> @Model.themeName <span> (группа: @ViewBag.GroupName) </span></h1>
+    }
+    @if (Model.colorTheme == "Pink")
+    {
+        <h1 class="content-title"><div class="theme-color" style="background-color: #D58BA2 "></div> @Model.themeName <span> (группа: @ViewBag.GroupName) </span></h1>
+    }
+    @if (Model.colorTheme == "Green")
+    {
+        <h1 class="content-title"><div class="theme-color" style="background-color: #7FD3B0 "></div> @Model.themeName <span> (группа: @ViewBag.GroupName) </span></h1>
+    }
+
+    @if (Model.colorTheme == "Purpure")
+    {
+        <h1 class="content-title"><div class="theme-color" style="background-color: #9D90C0"></div> @Model.themeName <span> (группа: @ViewBag.GroupName) </span></h1>
+    }
+
+
+
+    <div class="admin-content">
+
+        <div class="admin-files admin-content__item opened ">
+
+            <div class="admin-actions">
+
+                @using (Ajax.BeginForm("SearchFile", "Teacher", new AjaxOptions { UpdateTargetId = "File-Results", LoadingElementId = "File-loading" }, new { @class = "search" }))
+                {
+                    <span class="search-text">Поиск темы:</span>
+                    <input class="search-input" type="text" name="fragment" placeholder="Название темы или группы">
+                    <input type="hidden" name="Id" value="@Model.Id">
+                    <input type="submit" value="" class="search-submit">
+                }
+
+                <div class="admin-actions__item js-AddFile">Добавить задание</div>
+
+
+            </div>
+
+            <div id="File-loading" style="display:none;">
+                <p>Идет загрузка...</p>
+            </div>
+
+            <div class="theme-file__wrap" id="File-Results">
+
+
+                @if (ViewBag.FileCount == 0)
+                {
+                    <p> В этой теме еще нет заданий. <br /> Добавьте задание, чтобы ученики смогли его выполнить</p>
+                }
+                else
+                {
+                    int i = 1;
+
+                    if (ViewBag.AudioCount != 0)
+                    {
+
+                        <div class="theme-file">
+                            <img src="~/Content/img_back/icons/files/music-icon.svg" alt="Аудио-файлы" class="theme-file__icon">
+                            <div class="theme-file__list">
+
+                                @{
+                                    i = 1;
+                                }
+                                @foreach (Assignment file in ViewBag.AudioFiles)
+                                {
+                                    <div class="theme-file__item">
+                                        <div class="theme-file__head">
+                                            <span class="count">File @i.</span>
+                                            <span class="name">
+                                                @file.AssignmentTask
+                                            </span>
+
+                                        </div>
+                                        <div class="theme-file__body">
+                                            <button class="btn js-toAuPlayer" data-name="@file.fileName" data-url="https://mrsimon.ru/th_files/@file.AssignmentFileName@file.AssignmentFileExpansion">Запустить <img src="~/Content/img_back/icons/files/play-icon.svg" alt=""></button>
+                                            <a class="btn" href="~/Teacher/GetFile?AssignmentFileName=@file.AssignmentFileName&expansion=@file.AssignmentFileExpansion&fileName=@file.fileName">Скачать <img src="~/Content/img_back/icons/files/download-icon.svg" alt=""></a>
+                                            <a href="~/Teacher/DeleteFile/@file.Id" class="btn primary">
+                                                Удалить <img src="~/Content/img_back/icons/delete-icon_white.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    i++;
+                                }
+
+                            </div>
+                        </div>
+
+                    }
+
+                    if (ViewBag.VideoCount != 0)
+                    {
+
+                        <div class="theme-file">
+                            <img src="~/Content/img_back/icons/files/film-icon.svg" alt="Видео-файлы" class="theme-file__icon">
+                            <div class="theme-file__list">
+
+                                @{
+                                    i = 1;
+                                }
+                                @foreach (Assignment file in ViewBag.VideoFiles)
+                                {
+                                    <div class="theme-file__item">
+                                        <div class="theme-file__head">
+                                            <span class="count">File @i.</span>
+                                            <span class="name">
+                                                @file.AssignmentTask
+                                            </span>
+
+                                        </div>
+                                        <div class="theme-file__body">
+                                            <button class="btn">Запустить <img src="~/Content/img_back/icons/files/play-icon.svg" alt=""></button>
+                                            <button class="btn">Скачать <img src="~/Content/img_back/icons/files/download-icon.svg" alt=""></button>
+                                            <button class="btn">Редактировать <img src="~/Content/img_back/icons/files/edit-icon.svg" alt=""></button>
+                                            <a href="~/Admin/DeleteFile/@file.Id" class="btn primary">
+                                                Удалить <img src="~/Content/img_back/icons/delete-icon_white.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    i++;
+                                }
+
+                            </div>
+                        </div>
+
+                    }
+
+                    if (ViewBag.DownloadCount != 0)
+                    {
+
+                        <div class="theme-file">
+                            <img src="~/Content/img_back/icons/files/upload-icon.svg" alt="файлы для скачивания" class="theme-file__icon">
+                            <div class="theme-file__list">
+
+                                @{
+                                    i = 1;
+                                }
+                                @foreach (Assignment file in ViewBag.DownloadFiles)
+                                {
+                                    <div class="theme-file__item">
+                                        <div class="theme-file__head">
+                                            <span class="count">File @i.</span>
+                                            <span class="name">
+                                                @file.AssignmentTask
+                                            </span>
+
+                                        </div>
+                                        <div class="theme-file__body">
+                                            <a class="btn" href="~/Teacher/GetFile?AssignmentFileName=@file.AssignmentFileName&expansion=@file.AssignmentFileExpansion&fileName=@file.fileName">Скачать <img src="~/Content/img_back/icons/files/download-icon.svg" alt=""></a>
+                                            <a href="~/Teacher/DeleteFile/@file.Id" class="btn primary">
+                                                Удалить <img src="~/Content/img_back/icons/delete-icon_white.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    i++;
+                                }
+
+                            </div>
+                        </div>
+
+                    }
+
+                    if (ViewBag.LinkCount != 0)
+                    {
+
+                        <div class="theme-file">
+                            <img src="~/Content/img_back/icons/files/link-icon.svg" alt="Задания со ссылками" class="theme-file__icon">
+                            <div class="theme-file__list">
+
+                                @{
+                                    i = 1;
+                                }
+                                @foreach (Assignment file in ViewBag.LinkFiles)
+                                {
+                                    <div class="theme-file__item">
+                                        <div class="theme-file__head">
+                                            <span class="count">File @i.</span>
+                                            <span class="name">
+                                                @file.AssignmentTask
+                                            </span>
+
+                                        </div>
+                                        <div class="theme-file__body">
+                                            <a href="@file.link" target="_blank" class="btn">Перейти </a>
+                                            <a href="~/Teacher/DeleteFile/@file.Id" class="btn primary">
+                                                Удалить <img src="~/Content/img_back/icons/delete-icon_white.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    i++;
+                                }
+
+                            </div>
+                        </div>
+
+                    }
+
+                    if (ViewBag.PictureCount != 0)
+                    {
+
+                        <div class="theme-file">
+                            <img src="~/Content/img_back/icons/files/picture-icon.svg" alt="Задания с картинками" class="theme-file__icon">
+                            <div class="theme-file__list">
+
+                                @{
+                                    i = 1;
+                                }
+                                @foreach (Assignment file in ViewBag.PictureFiles)
+                                {
+                                    <div class="theme-file__item">
+                                        <div class="theme-file__head">
+                                            <span class="count">File @i.</span>
+                                            <span class="name">
+                                                @file.AssignmentTask
+                                            </span>
+
+                                        </div>
+                                        <div class="theme-file__body">
+                                            <button class="btn">Запустить <img src="~/Content/img_back/icons/files/play-icon.svg" alt=""></button>
+                                            <button class="btn">Скачать <img src="~/Content/img_back/icons/files/download-icon.svg" alt=""></button>
+                                            <button class="btn">Редактировать <img src="~/Content/img_back/icons/files/edit-icon.svg" alt=""></button>
+                                            <a href="~/Admin/DeleteFile/@file.Id" class="btn primary">
+                                                Удалить <img src="~/Content/img_back/icons/delete-icon_white.svg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    i++;
+                                }
+
+                            </div>
+                        </div>
+
+                    }
+
+
+                }
+
+            </div>
+        </div>
+
+
+        @Html.Action("AddFile", "Teacher", new { Id = Model.Id })
+
+    </div>
+
+
+
+
+
+
+</section>
+

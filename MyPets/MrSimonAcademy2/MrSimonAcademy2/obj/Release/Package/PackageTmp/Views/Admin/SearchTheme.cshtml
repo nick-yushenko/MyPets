@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Group>
+
+
+@if (Model.Count() == 0)
+{
+    <p>Таких групп или тем не найдено</p>
+}
+else
+{
+    foreach (var g in Model)
+    {
+
+        <div class="group-theme">
+            <div class="group-theme__head">
+                <div class="name">@g.GroupName <span>(тем: @g.ThemeList.Count)</span> </div>
+                <div class="actions">
+                    <div class="actions-item js-toAddingTheme" data-id="@g.Id" data-group="@g.GroupName" data-reternUrl="Theme">
+                        <img src="~/Content/img_back/icons/theme-icon.svg" alt="" class="icon">
+                        <span>+ Тема</span>
+                    </div>
+                </div>
+            </div>
+            <div class="group-theme__body">
+                @{
+                    int j = 1;
+                }
+                @foreach (var th in g.ThemeList)
+                {
+                    <a href="~/Admin/GetTheme/@th.Id" class="group-theme__item">
+                        <span class="count">@j.</span>
+                        <span class="name">
+                            @th.themeName
+                        </span>
+                        <div class="files-count">
+                            <span>Файлов:</span>
+                            <span>@th.AssignmentList.Count()</span>
+                        </div>
+                    </a>
+                    j++;
+                }
+                @if (j == 1)
+                {
+                    <a href="#" class="group-theme__item">
+                        <span class="count">0</span>
+                        <span class="name">
+                            Список тем пуст
+                        </span>
+
+                    </a>
+                }
+
+
+
+            </div>
+        </div>
+
+
+
+
+    }
+
+
+}

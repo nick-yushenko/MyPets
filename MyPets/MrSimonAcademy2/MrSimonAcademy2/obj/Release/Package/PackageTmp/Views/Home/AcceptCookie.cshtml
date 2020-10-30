@@ -1,0 +1,22 @@
+﻿
+@using (Ajax.BeginForm("SetCookieAccept", "Home", new AjaxOptions { UpdateTargetId = "results", LoadingElementId = "loading" }, new { @class = "cookie-form" }))
+{
+    if (!ViewBag.Accepted)
+    {
+        <div class="cookie">
+            <div class="cookie-wrap">
+                <div class="descr">
+                    Продолжая использовать сайт <a href="http://mrsimon.ru">mrsimon.ru</a>,
+                    Вы соглашаетесь на использование файлов cookie.
+                    <span class="br"></span>
+                    Более подробную информацию можно найти в <span class="toPrivacy">политике конфиденциальности</span>
+                </div>
+                <input type="submit" id="AcceptCookie" value="Понятно" />
+            </div>
+        </div>
+    }
+
+
+}
+
+

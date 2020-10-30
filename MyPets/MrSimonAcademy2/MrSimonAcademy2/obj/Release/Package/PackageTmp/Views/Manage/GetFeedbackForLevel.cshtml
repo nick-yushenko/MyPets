@@ -1,0 +1,158 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Feedback>
+
+
+<section class="feedback">
+    <div class="container-fluid">
+
+        <h2 class="feedback-title">Ваш уровень</h2>
+        @if (ViewBag.LevelProgress > 80)
+        {
+            <p class="feedback-descr">@ViewBag.LevelName и Вы приближаетесь к новой ступени! Так держать!</p>
+        }
+        @if (ViewBag.LevelProgress > 60 && ViewBag.LevelProgress < 80)
+        {
+            <p class="feedback-descr">@ViewBag.LevelName</p>
+        }
+        @if (ViewBag.LevelProgress > 40 && ViewBag.LevelProgress < 60)
+        {
+            <p class="feedback-descr">У Вас уже твердый @ViewBag.LevelName!  </p>
+        }
+
+        @if (ViewBag.LevelProgress > 20 && ViewBag.LevelProgress < 40)
+        {
+            <p class="feedback-descr">@ViewBag.LevelName</p>
+        }
+
+        @if (ViewBag.LevelProgress < 20)
+        {
+            <p class="feedback-descr">Вы совсем недавно перешли на новую ступень - @ViewBag.LevelName! Не сбавляйте темп - впереди еще много интересного!</p>
+        }
+
+        <div class="feedback-level">
+
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "STARTER")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">Starter</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "BEGINNER")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">Beginner</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "ELEMENTARY")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">Elementary</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "PRE-INTERMEDIATE")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">Pre-intermediate</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "INTERMEDIATE")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">intermediate</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "UPPER-INTERMEDIATE")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">Upper-intermediate</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "ADVANCED")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+
+                <span class="feedback-level__name">Advanced</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+            <div class="feedback-level__item">
+                @if (ViewBag.LevelName.ToUpper() == "PROFICIENCY")
+                {
+                    <div class="path active">
+                        <div class="current" data-progress="@ViewBag.LevelProgress"> <span>Вы вот здесь</span> <img src="../../Content/img/profile/current.svg" alt=""></div>
+                    </div>
+                }
+                else
+                {
+                    <div class="path">
+                    </div>
+                }
+                <span class="feedback-level__name">Proficiency</span>
+                <span class="feedback-level__descr">Lorem ipsum dolor, consectetur adipisicing elit. Nemo, excepturi?</span>
+            </div>
+        </div>
+    </div>
+</section>

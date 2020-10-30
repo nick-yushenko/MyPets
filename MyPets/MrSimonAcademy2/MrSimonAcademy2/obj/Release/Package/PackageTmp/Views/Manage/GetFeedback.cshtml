@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Feedback>
+
+<section class="section feedback">
+    <div class="container">
+        <h2 class="feedback-title">Ваши навыки: </h2>
+        @if (ViewBag.NextLevelName == "null")
+        {
+            <p class="feedback-descr">Ваши навыки соответсвуют уровню Proficiency, но это не повод останавливаться! Продолжайте совершенствовать свои навыки</p>
+
+        }
+        else 
+        { 
+            <p class="feedback-descr">Когда все аспекты языка будут приближаться к 100%, вы перейдете на новую ступень - @ViewBag.NextLevelName</p>
+          
+        }
+        <div class="feedback-wrap">
+
+            <div class="feedback-item">
+                <svg class="feedback-item__svg" width="120" height="120">
+                    <circle class="feedback-item__circle" data-progress="@ViewBag.Speaking" fill="transparent" stroke="#106E83" stroke-width="4" cx="60" cy="60" r="52" />
+                </svg>
+                <span class="feedback-item__value" style="color: #106E83">@ViewBag.Speaking%</span>
+                <span class="feedback-item__name">Speaking</span>
+                <p class="feedback-item__descr">Lorem ipsum dolor sit amet.</p>
+
+            </div>
+            <div class="feedback-item">
+                <svg class="feedback-item__svg" width="120" height="120">
+                    <circle class="feedback-item__circle" data-progress="@ViewBag.Listening" fill="transparent" stroke="#8144D6" stroke-width="4" cx="60" cy="60" r="52" />
+                </svg>
+                <span class="feedback-item__value" style="color: #8144D6">@ViewBag.Listening%</span>
+                <span class="feedback-item__name">Listening</span>
+                <p class="feedback-item__descr">Lorem ipsum dolor Lorem ipsum dolor sit amet. sit amet.</p>
+
+            </div>
+            <div class="feedback-item">
+                <svg class="feedback-item__svg" width="120" height="120">
+                    <circle class="feedback-item__circle" data-progress="@ViewBag.Reading" fill="transparent" stroke="#36BBCE" stroke-width="4" cx="60" cy="60" r="52" />
+                </svg>
+                <span class="feedback-item__value" style="color: #36BBCE">@ViewBag.Reading%</span>
+
+                <span class="feedback-item__name">Reading</span>
+                <p class="feedback-item__descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+            </div>
+            <div class="feedback-item">
+                <svg class="feedback-item__svg" width="120" height="120">
+                    <circle class="feedback-item__circle" data-progress="@ViewBag.Writing" fill="transparent" stroke="#FF7A00" stroke-width="4" cx="60" cy="60" r="52" />
+                </svg>
+                <span class="feedback-item__value" style="color: #FF7A00">@ViewBag.Writing%</span>
+
+                <span class="feedback-item__name">Writing</span>
+                <p class="feedback-item__descr"> dolor sit amet consectetur adipisicing elit.</p>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+

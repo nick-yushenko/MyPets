@@ -1,0 +1,852 @@
+﻿
+
+@if (ViewBag.hasSkills)
+{
+    <div class="statistic-block skills">
+        <h2 class="statistic-block__title">Ваши текущие навыки</h2>
+        <div class="info">
+            <div class="info-btn">
+                <img src="~/Content/img_back/icons/info-icon.svg" alt="">
+            </div>
+            <div class="info-block">
+                Данная статистика заполняется преподавателем для подсчета речемыслительных действий, которые отвечают за&nbsp;автоматизм.
+            </div>
+        </div>
+        <p>
+            Улучшайте свои навыки чтения, понимания на слух, усной речи и письма. С того момента, как мы считали в
+            прошлый раз, вы перешли на уровень <span class="primary">Elementary</span>. Поздравляем!
+        </p>
+
+        <div class="skills-wrap">
+            <div class="skills-item">
+                <div class="diagram-wrap skill">
+                    <svg class="skills-item__svg">
+                        <!-- data-count - общее количество -->
+                        <circle class="skills-item__circle total" fill="transparent" stroke="#E7F7FB" stroke-width="20"
+                                cx="80" cy="80" r="70" />
+                        <!-- data-count - сколько посещено -->
+                        <circle class="skills-item__circle skill-data" data-count="@ViewBag.Speaking" fill="transparent" stroke="#7FD3B0"
+                                stroke-width="20" cx="80" cy="80" r="70" />
+
+                    </svg>
+                    <span class="percent js-skill-percent"></span>
+
+                </div>
+                <h3 class="skills-name">Speaking</h3>
+                @if (Convert.ToInt32(ViewBag.Speaking) <= 25)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;произносите буквы алфавита и&nbsp;это как раз&nbsp;то, что нужно.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Класс! Вы&nbsp;знаете, как поприветствовать, поблагодарить собеседника. Учимся дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;немного знаете, как использовать в&nbsp;речи выражения для рассказа о&nbsp;себе, но&nbsp;этого недостаточно, чтобы полноценно
+                            разговаривать с&nbsp;иностранцами. Давайте поднажмем!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете поддержать разговор и&nbsp;пусть будут ошибки, но&nbsp;кто их&nbsp;не&nbsp;совершает, все видят, что Вы&nbsp;стараетесь.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете выразить своё личное отношение, но&nbsp;есть ошибки, будьте внимательнее.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;неплохо говорите! Но&nbsp;есть пару ошибок и&nbsp;часто не&nbsp;хватает лексики для полного раскрытия темы. Идем учиться дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете выражать свое мнение спонтанно. Но&nbsp;это далеко не&nbsp;предел!
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Speaking) > 25 && Convert.ToInt32(ViewBag.Speaking) <= 50)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;уже можете поприветствовать и&nbsp;попрощаться с&nbsp;собеседником и&nbsp;даже можете задать пару вопросов. Класс!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;быстро учитесь говорить о&nbsp;себе и&nbsp;даже задавать вопросы о&nbsp;собеседнике. Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Ого, Вы&nbsp;уже можете рассказать о&nbsp;своей семье. Идем дальше?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            О, Вы&nbsp;уже можете запрашивать информацию о&nbsp;месторасположении. За&nbsp;границей точно не&nbsp;потеряетесь!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Уже намного лучше! Но&nbsp;нужно учиться говорить быстрее! Практикуйте разговорную речь чаще.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Прогресс! Вы&nbsp;стали использовать новую лексику и&nbsp;грамматику! Повышаем качество дальше?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            У&nbsp;Выс неплохо обогатился словарный запас, который Вы&nbsp;часто используете! Постараемся еще?
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Speaking) > 50 && Convert.ToInt32(ViewBag.Speaking) <= 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вот это&nbsp;да! Вы&nbsp;можете сказать несколько предложений о&nbsp;себе, используя фразы&nbsp;&mdash; шаблоны! Дальше попробуем сами?
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;умеете отвечать на&nbsp;вопросы, но&nbsp;я-то знаю, Вы&nbsp;можете больше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;уже сможете обменяться парой фраз с&nbsp;собеседником, но&nbsp;хочется большего. Очень хорошо, ведь есть к&nbsp;чему стремиться!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            При знакомстве с&nbsp;людьми, в&nbsp;магазине или у&nbsp;врача Вы&nbsp;с&nbsp;легкостью узнаете нужную информацию, главное, не&nbsp;бойтесь!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете описывать события или свой опыт, общей длительностью около 2&nbsp;минут! Довольно неплохо!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;общаетесь на&nbsp;уровне спонтанности даже с&nbsp;носителем языка! Можете больше! Мы&nbsp;в&nbsp;Вас верим!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Классно, Вы&nbsp;уже используете в&nbsp;своей речи сложные грамматические структуры и&nbsp;продвинутую лексику. Но&nbsp;мы&nbsp;уверены, что Вы&nbsp;можете достичь большего!
+
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Speaking) > 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Можете задать вопрос или узнать простую информацию о&nbsp;вещах, находящихся в&nbsp;зоне видимости.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете участвовать в&nbsp;небольшом диалоге, задавать вопросы и&nbsp;показывать интерес. И&nbsp;это еще не&nbsp;предел!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете рассказать о&nbsp;своих предпочтениях и&nbsp;задавать вопросы касательно интересов собеседника. Так держать!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;умеете высказывать своё мнение на&nbsp;основе изученного материала и&nbsp;делится им&nbsp;со&nbsp;всеми! Excellent!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете принять участие в&nbsp;спонтанном разговоре. Я&nbsp;бы поехал с&nbsp;Вами в&nbsp;путешествие, так как на&nbsp;Вас можно положиться!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете выразить свое мнение понятно, детально описывая события, развивать и&nbsp;подтверждать свою точку зрения примерами. Очень круто!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;умеете уверенно осуществлять коммуникацию в&nbsp;любой ситуации, прибегая к&nbsp;аргументированным ответам. Мы&nbsp;гордимся Вами!
+                        </p>
+                    }
+
+                }
+
+
+            </div>
+            <div class="skills-item">
+                <div class="diagram-wrap skill">
+                    <svg class="skills-item__svg">
+                        <!-- data-count - общее количество -->
+                        <circle class="skills-item__circle total" fill="transparent" stroke="#E7F7FB" stroke-width="20"
+                                cx="80" cy="80" r="70" />
+                        <!-- data-count - сколько посещено -->
+                        <circle class="skills-item__circle skill-data" data-count="@ViewBag.Listening" fill="transparent" stroke="#D58BA2"
+                                stroke-width="20" cx="80" cy="80" r="70" />
+
+                    </svg>
+                    <span class="percent js-skill-percent"></span>
+
+                </div>
+                <h3 class="skills-name">Listening</h3>
+                @if (Convert.ToInt32(ViewBag.Listening) <= 25)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;умеете понимать и&nbsp;различать буквы алфавита. Начало положено!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вам сложно дается воспринимать простые предложения, поэтому Вы&nbsp;понимаете смысл по&nbsp;знакомым словам. Давайте стараться!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;различаете часто употребляемые слова и&nbsp;фразы, но&nbsp;нужно слушать чаще!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Общий смысл и&nbsp;настроение автора уже понятно, но&nbsp;этого недостаточно. Движемся дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;молодец! Но&nbsp;не&nbsp;хватает практики. Давай поднажмем!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;хорошо улавливаете информацию, но&nbsp;мы&nbsp;же хотим развиваться дальше? Слушай больше!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;можете воспринимать на&nbsp;слух сложные тексты и&nbsp;диалоги. Но&nbsp;давайте поднажмем, и&nbsp;Вы&nbsp;сможете больше!
+
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Listening) > 25 && Convert.ToInt32(ViewBag.Listening) <= 50)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Раньше не&nbsp;могли различить звуки, а&nbsp;теперь уже понимаете простые фразы. Продолжайте в&nbsp;том&nbsp;же духе!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            О, Вы&nbsp;уже понимаете больше&nbsp;&mdash; фразы в&nbsp;предложениях. Поднажмите!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы понимаете слова учителя и инструкции! Молодцы!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Почему&nbsp;бы не&nbsp;начать смотреть простенькие короткометражные мультфильмы с&nbsp;субтитрами? Это сильно поможет Вам в&nbsp;дальнейшем!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            В&nbsp;рассказе Вы&nbsp;уже хорошо улавливаешь сюжет и&nbsp;происходящие действия, так держать!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;уже хорошо понимаете на&nbsp;слух песни! Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Уже понимаете и&nbsp;различаете неизвестные фразы, можете понять смысл, исходя из&nbsp;контекста. Отличный результат!
+
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Listening) > 50 && Convert.ToInt32(ViewBag.Listening) <= 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Как круто! Вы&nbsp;можешь понять простые предложения. Мы&nbsp;гордимся Вами!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;испытываете уже меньше сложностей в&nbsp;понимании аудиозаписей и&nbsp;совершено не&nbsp;боитесь прослушивать незнакомые тексты. Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Почему&nbsp;бы не&nbsp;начать слушать музыку на&nbsp;иностранном языке и&nbsp;смотреть чаще в&nbsp;скрипты?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Пусть встречаются незнакомые слова и&nbsp;выражения, Вас это не&nbsp;должно смущать, ведь с&nbsp;этим заданием Вы&nbsp;справитесь!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            В&nbsp;диалогах до&nbsp;2&nbsp;минут Вы&nbsp;способны понимать точку зрения говорящих и&nbsp;подмечать детали. Well done!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вам легко понимать речь носителей языка, но&nbsp;его шутки... Нужно еще постараться!
+
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы&nbsp;без труда понимаете на&nbsp;слух шутки иностранцев! А&nbsp;они далеко не&nbsp;простые! Keep it&nbsp;up!
+
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Listening) > 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вам уже достаточно легко дается понимать короткие разговоры по пройденным темам. Молодец!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы легко воспринимаете на слух небольшие предложения с элементарной лексикой. Мы рады видеть Ваш прогресс!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы понимаете общий смысль речи, но ряд фраз и выражений Вас все же смущает. Не переживайте, ведь Вы сделал все, что в Ваших силах на этом уровне! Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Темп спикера Вас уже не смущает, и Вы идете дальше, ведь хочется понимать весь смысл и понимать все незамедлительно.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Wow! Вы уже можете понимать лексику из контекста. Вот это профессионализм!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы способны воспринимать свободно длинные тексты на слух, например, радиопередачи, интервью. Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Wow! Вы можешь воспринимать длинные отрывки, даже с акцентом, и при этом с полным пониманием услышанного.
+                        </p>
+                    }
+
+                }
+
+            </div>
+            <div class="skills-item">
+                <div class="diagram-wrap skill">
+                    <svg class="skills-item__svg">
+                        <!-- data-count - общее количество -->
+                        <circle class="skills-item__circle total" fill="transparent" stroke="#E7F7FB" stroke-width="20"
+                                cx="80" cy="80" r="70" />
+                        <!-- data-count - сколько посещено -->
+                        <circle class="skills-item__circle skill-data" data-count="@ViewBag.Reading" fill="transparent" stroke="#87C0E3"
+                                stroke-width="20" cx="80" cy="80" r="70" />
+
+                    </svg>
+                    <span class="percent js-skill-percent"></span>
+
+                </div>
+                <h3 class="skills-name">Reading</h3>
+                @if (Convert.ToInt32(ViewBag.Reading) <= 25)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы узнаете буквы алфавита, поднажмем и научимся читать слова!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы знаете, как читать, но на практике не всегда выходит гладко. Для начала хорошо, но можно научиться большему!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Не так просто читать диалоги и тесты, ведь в них много незнакомых фраз и выражений. Приложите усилия и все получится!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Пусть Вы читаете медленно и иногда есть ошибки в понимании, но мы видим, что Вы стараетесь!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Видите, Вы уже понимаете намного больше! Теперь еще больше знакомых слов в тексте!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Тексты Вам даются легко, но хочется понимать каждое слово. НЕ зацикливайтесь, двигаемся дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы понимаете аутентичные тексты, но не все так просто, нужно понимать глубокий смысл прочитанного.
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Reading) > 25 && Convert.ToInt32(ViewBag.Reading) <= 50)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Ого! Вы уже узнаете числа и множественное число имен существительных.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы можете читать, пусть и медленно, но не забывайте про смысл. Давай учиться дальше?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы можете понять знакомые фразы и грамматику, ведь у Вас уже хорошая база знаний.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Почему бы не почитать дополнительную литературу?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Несмотря на незнакомую лексику, Вы понимаете основную идею текста! Great job!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Теперь Вы понимаете больше. Ведь Ваш словарный запас обогатился.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Уже намного лучше! Вы понимаете автора: его замысел и чувства, но есть небольшие сложности с фразами. Продолжайте в том же духе!
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Reading) > 50 && Convert.ToInt32(ViewBag.Reading) <= 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы умеете читать и узнавать простые фразы. Продолжайте в том же духе!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы умеете понимать элементарные информационные надписи и указания! Молодец!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Хоть и есть пара тройку незнакомых фраз, Вы все же приложите усилия и дочитайте текст до конца, чтобы понять весь смысл.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Уже требуется не просто прочитать, но и понять содержимое, а это бывает не просто. Но оглянитесь, Вы сделали большой рывок вперед!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Незнакомые слова и грамматика уже не так страшны, ведь Вы понимаете суть, как нужно читать. Мы гордимся Вами!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы можете читать с почти полным пониманием тематические статьи и отчеты! Двигаемся дальше?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы легко читаете аутентичные статьи и тексты с полным пониманием смысла.
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Reading) > 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы легко узнаете знакомые слова и простые фразы. Давайте учиться дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вам легко удается понимать маленькие тексты, и вы не просто их читаете, Вы с легкостью вообразите сюжет прочитанного.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            У Вас получается читать тексты и диалоги со знакомой лексикой и понимать смысл автора! Ведь теперь размер текса и содержание Вас не пугают. Well done!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы умеете читать небольшие тексты с небольшим количеством незнакомой лексики, которая не мешает общему пониманию текста. Но это не предел! Учимся дальше?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы уже можете прочитать несложный отчёт по работе. Ух, а что же будет дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Ура! Вы можете читать художественные тексты на иностранном языке. Какая книга следующая?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Кажется, будто иностранный это Ваш родной язык, ведь Вы способны осуществлять анализ прочитанной литературы!
+                        </p>
+                    }
+
+                }
+
+            </div>
+            <div class="skills-item">
+                <div class="diagram-wrap skill">
+                    <svg class="skills-item__svg">
+                        <!-- data-count - общее количество -->
+                        <circle class="skills-item__circle total" fill="transparent" stroke="#E7F7FB" stroke-width="20"
+                                cx="80" cy="80" r="70" />
+                        <!-- data-count - сколько посещено -->
+                        <circle class="skills-item__circle skill-data" data-count="@ViewBag.Writing" fill="transparent" stroke="#9D90C0"
+                                stroke-width="20" cx="80" cy="80" r="70" />
+
+                    </svg>
+                    <span class="percent js-skill-percent"></span>
+
+                </div>
+                <h3 class="skills-name">Writing</h3>
+                @if (Convert.ToInt32(ViewBag.Writing) <= 25)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы можете написать заглавные и строчные буквы алфавита. Уже хорошо!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Вы можете написать немного о себе, но, к сожалению, есть ошибки. Стараемся дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вам непросто написать небольшой текст, но Вы стараетесь, и мы это видим.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы молодец! Уже пишете уверенно, хотя есть небольшие ошибки. Стараемся дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы можете написать сочинение, но очень часто обращаетесь к словарю. У Вас получится, старайтесь!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы можете написать уже любой текст, но есть грамматические ошибки и пару неточностей. Давайте стараться дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы можете писать сочинения на заданную тему, но иногда все же стоит повторить новую лексику или грамматику.  Поднажмите, и будет получаться еще круче!
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Writing) > 25 && Convert.ToInt32(ViewBag.Writing) <= 50)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы уже можете написать словами количественные числительные от 1 до 20. Попробуем в следующий раз написать 34?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            В переписке у Вас получается написать простые сообщения с указанием времени, даты и места. А что же будет дальше?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Делаете первые шаги, чтобы научиться писать эссе. Есть ошибки, но у кого их нет?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы уже умеете легко писать сообщения или короткие записки, используя знакомую лексику.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Уже лучше, но есть грамматические ошибки, давайте еще поучим?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы уже знаете, как писать в формальном и в неформальном стилях! Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы начали использовать в письме продвинутую лексику! Так держать!
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Writing) > 50 && Convert.ToInt32(ViewBag.Writing) <= 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Ого! Вы уже умеете писать информацию о себе. Продемонстрируете?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Стараетесь писать уже целые тексты и мы уверены, что в скором временем Вы достигнете желаемых результатов!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Заполнить анкету – легко! Написать о себе – легко. Но это не предел, поэтому идем дальше.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы можете уже хорошо писать на простые темы, но не хватает уверенности и знаний правил иностранного языка! Поучимся еще?
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы уже можете писать без особого труда личные письма и эссе. В целом доволен, но есть к чему стремиться! Идем дальше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы способны писать детальные и доступные для понимания тексты на широкий диапазон тем. Но есть маленькие недочеты. Давайте стараться лучше!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Вы умеете писать отчеты, ух, и чертовски  умело!
+                        </p>
+                    }
+
+                }
+                @if (Convert.ToInt32(ViewBag.Writing) > 75)
+                {
+                    if (ViewBag.Level.ToUpper() == "STARTER")
+                    {
+                        <p class="skills-descr">
+                            Вы уже можете написать знакомые слова и короткие фразы о повседневных предметах, а также стандартные фразы. Покажите все на что Вы способны!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "BEGINNER")
+                    {
+                        <p class="skills-descr">
+                            Круто! Вы можете написать без ошибок письмо другу.
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ELEMENTARY")
+                    {
+                        <p class="skills-descr">
+                            Вы можете писать короткие поздравительные открытки и письма друзьям. Мы уже не говорим о Ваших классных эссе. Cool!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "PRE-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Иногда стоит посмотреть на пройденный путь и Вы поймете, что пишете уже не заметки, а тексты!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Вы можете грамматически верно написать связный текст с сюжетом, не пользуясь переводчиком! Так держать!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "UPPER-INTERMEDIATE")
+                    {
+                        <p class="skills-descr">
+                            Ого, Вам уже нетрудно писать сочинения и статьи на разные темы! Какой большой путь Вы проделали!
+                        </p>
+                    }
+                    if (ViewBag.Level.ToUpper() == "ADVANCED")
+                    {
+                        <p class="skills-descr">
+                            Иногда кажется, что Вы не знаете русского, так как можете написать абсолютно все! Вы – наша гордость!
+                        </p>
+                    }
+
+                }
+
+            </div>
+        </div>
+
+    </div>
+}

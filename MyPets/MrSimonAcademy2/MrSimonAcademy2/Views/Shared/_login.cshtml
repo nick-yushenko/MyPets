@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Nick Yushenko">
+    <meta name="description" content="Mr. Simon Academy - войти в личный кабинет">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+          rel="stylesheet">
+
+    
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/Content/css/background.min.css">
+    <title>Mr. Simon Academy - Вход</title>
+</head>
+
+<body class="back">
+
+    <div class="preloader">
+        <div class="preloader-block">
+            <div class="item-1 item"></div>
+            <div class="item-2 item"></div>
+            <div class="item-3 item"></div>
+            <div class="item-4 item"></div>
+            <div class="item-5 item"></div>
+        </div>
+    </div>
+
+    <div class="header-mini login scrolled">
+        <div class="wrap header-wrap ">
+            <a href="/" class="header-mini-logo">
+                <img class="header-mini-logo" src="~/Content/img/logo-mini.svg" alt="">
+            </a>
+
+            <nav class="header-nav mini">
+
+                @Html.ActionLink(" Вернуться на главную", "Index", "Home")
+            </nav>
+
+
+            <div class="header-block phone mini login">
+                <img src="~/Content/img/icons/phone-icon.svg" alt="">
+                <p>
+                    <span>Ответим на вопросы:</span>
+
+                    <a href="tel:+79631919149" class="link">+7 (391) 271 91 49</a>
+                    <span class="link">+7 (391) 271 91 49</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    @Html.Action("AcceptCookie", "Home")
+
+
+    <main class="" id="main">
+        @RenderBody()
+    </main>
+
+
+    @Scripts.Render("~/content/js/jquery.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+    @Scripts.Render("~/content/js/jquery.mask.min.js")
+    @Scripts.Render("~/content/js/jquery.validate.min.js")
+
+    @Scripts.Render("~/content/js/components/preloader.js")
+    @Scripts.Render("~/content/js/components/cookie.js")
+
+
+
+    @RenderSection("scripts", required: false)
+
+
+</body>
+
+</html>

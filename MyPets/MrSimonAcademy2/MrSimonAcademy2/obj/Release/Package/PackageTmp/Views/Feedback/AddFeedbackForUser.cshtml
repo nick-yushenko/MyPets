@@ -1,0 +1,90 @@
+﻿@model MrSimonAcademy2.Models.Feedback
+
+@{
+    ViewBag.Title = "AddFeedback";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+
+<div class="container">
+    <h2>Добавление фидбека</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(m => m.UserId)
+            
+            <div class="form-group">
+                <span class="control-label col-md-2">Студент</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <input class="form-control text-box single-line" type="text" readonly value="@ViewBag.user"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Название группы</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <input class="form-control text-box single-line" type="text" readonly value="@ViewBag.groupName" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Всего уроков</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    @Html.EditorFor(m => m.LessonsCount)
+                </div>
+            </div>
+
+             <div class="form-group">
+                <span class="control-label col-md-2">Пропущено уроков</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    @Html.EditorFor(m => m.LoseLessons)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Speaking</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <input class="form-control text-box single-line" type="text" name="speaking" value="@ViewBag.speaking" placeholder="от 0 до 100" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Listening</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <input class="form-control text-box single-line" type="text" name="listening" value="@ViewBag.listening"placeholder="от 0 до 100" />
+                </div>
+            </div>
+
+               <div class="form-group">
+                <span class="control-label col-md-2">Reading</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <input class="form-control text-box single-line" type="text" name="reading" value="@ViewBag.reading" placeholder="от 0 до 100" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Writing</span>
+                <div class="col-md-6" style="padding-top: 7px">
+                    <input class="form-control text-box single-line" type="text" name="writing" value="@ViewBag.writing" placeholder="от 0 до 100" />
+                </div>
+            </div>
+            <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Добавить" class="btn btn-default" />
+            </div>
+        </div>
+     
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Назад", "Users", "Admin")
+    </div>
+
+</div>

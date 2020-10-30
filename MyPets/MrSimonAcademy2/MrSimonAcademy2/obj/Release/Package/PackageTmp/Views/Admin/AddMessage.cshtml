@@ -1,0 +1,29 @@
+﻿
+<div class="admin-add admin-content__item js-admin-addmessage ">
+    <p>Добавление статистики <span id="js-TargetNameAddMessage">(Имя Фамилия)</span></p>
+
+    @using (Html.BeginForm("AddMessage", "Admin", FormMethod.Post, new { id = "AddMessageForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="input-block ">
+            <span class="text">Заголовок:</span>
+            <input type="text" name="msgTitle" class="input " placeholder="Очень важно!">
+
+        </div>
+        <div class="input-block ">
+            <span class="text">Сообщение:</span>
+            <textarea rows="10" cols="45" class="input" name="msgText"
+                      placeholder="Здесь какое-то сообщение"></textarea>
+        </div>
+
+        <input type="hidden" name="targetId" value="null" id="js-TargetIdAddMessage">
+        <!--ALL, USER or GROUP-->
+        <input type="hidden" name="targetType" value="null" id="js-TargetTypeAddMessage" />
+
+        <input type="submit" class="submit" value="Добавить">
+        <div class="back js-backToUserList" data-location="admin-users">Назад к списку</div>
+
+    }
+
+</div>

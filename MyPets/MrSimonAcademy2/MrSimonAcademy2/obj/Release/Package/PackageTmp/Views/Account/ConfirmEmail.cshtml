@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Регестрация прошла успешно!";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+    <div class="container">
+
+        <h2>@ViewBag.Title</h2>
+
+        <p>Спасибо! Теперь у Вас есть доступ к личному кабинету!</p>
+
+        @Html.ActionLink("Вернуться на главную", "Index", "Home") | 
+        @Html.ActionLink("Перейти в личный кабинет", "Index", "Manage")
+    </div>

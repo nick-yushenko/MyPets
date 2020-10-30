@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+<section class="admin">
+    <h1 class="content-title">Объявления</h1>
+
+    <!--
+    <div class="admin-wrap">
+
+        <div class="admin-item current " data-location="information-all">
+            Все сообщения
+        </div>
+
+        <div class="admin-item " data-location="information-groups">
+            По группами
+        </div>
+    </div>
+    -->
+
+
+    <div class="admin-content">
+
+        @Html.Action("AddMessageForAll", "Admin")
+
+        @Html.Action("AllMessages", "Admin")
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+</section>

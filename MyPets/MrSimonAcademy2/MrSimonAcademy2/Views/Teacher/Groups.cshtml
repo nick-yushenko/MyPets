@@ -1,0 +1,302 @@
+﻿@model IEnumerable<MrSimonAcademy2.Models.Group>
+@using MrSimonAcademy2.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+
+}
+
+<section class="admin">
+    <h1 class="content-title">Список групп</h1>
+
+    <div class="admin-content">
+
+        <div class="admin-add admin-content__item js-admin-addstatistic ">
+            <p>Добавление статистики <span id="js-UserNameAddStatistic">(Имя Фамилия)</span></p>
+
+            @using (Html.BeginForm("AddStatistic", "Teacher", FormMethod.Post, new { id = "AddStatisticForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="returnUrl" value="Groups">
+
+                <input type="hidden" name="userId" value="null" id="js-UserIdAddStatistic">
+
+                <div class="admin-add__block adding">
+                    <span class="admin-add__text">1. Посещаемость</span>
+                    <div class="input-block ">
+                        <span class="text">Всего уроков</span>
+                        <input type="number" name="lessonsCount" class="input " placeholder="60">
+
+                    </div>
+
+                    <div class="input-block ">
+                        <span class="text">Пропущено уроково </span>
+                        <input type="number" name="loseLessons" class="input " placeholder="60">
+                    </div>
+                </div>
+
+                <div class="admin-add__block adding">
+                    <span class="admin-add__text">2. Домашние задания</span>
+                    <div class="input-block ">
+                        <span class="text">Всего заданий</span>
+
+                        <input type="number" name="homeworkCount" class="input " placeholder="60">
+                    </div>
+
+                    <div class="input-block ">
+                        <span class="text">Сдано </span>
+                        <input type="number" name="passedHomework" class="input " placeholder="60">
+
+
+                    </div>
+                </div>
+                <div class="admin-add__block adding">
+                    <span class="admin-add__text">3. Активность и концентрация</span>
+                    <div class="input-block ">
+                        <span class="text">Активность</span>
+
+                        <input type="number" name="activity" class="input " placeholder="от 0 до 100">
+                    </div>
+
+                    <div class="input-block ">
+                        <span class="text">Концентрация</span>
+                        <input type="number" name="concentration" class="input " placeholder="от 0 до 100">
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="admin-add__block adding">
+                    <span class="admin-add__text">4. Навыки</span>
+                    <div class="input-block ">
+                        <span class="text">Speaking</span>
+                        <input type="number" name="Speaking" class="input " placeholder="от 0 до 100">
+                    </div>
+
+                    <div class="input-block ">
+                        <span class="text">Listening </span>
+                        <input type="number" name="Listening" class="input" placeholder="от 0 до 100">
+                    </div>
+                    <div class="input-block ">
+                        <span class="text">Writing</span>
+                        <input type="number" name="Writing" class="input " placeholder="от 0 до 100">
+                    </div>
+
+                    <div class="input-block ">
+                        <span class="text">Reading </span>
+                        <input type="number" name="Reading" class="input" placeholder="от 0 до 100">
+                    </div>
+                </div>
+
+                <div class="admin-add__block adding">
+                    <span class="admin-add__text">6. Обратная связь</span>
+                    <div class="input-block ">
+                        <span class="text">Сильные стороны </span>
+                        <textarea class="input" name="adventuresPlus"></textarea>
+                    </div>
+
+                    <div class="input-block ">
+                        <span class="text">На что обратить внимание</span>
+                        <textarea class="input" name="adventuresMinus"></textarea>
+                    </div>
+                </div>
+
+                <input type="submit" class="submit" value="Добавить">
+                <div class="back js-backToUserList" data-location="admin-groups">Назад к списку</div>
+
+            }
+
+        </div>
+
+
+        <div class="admin-groups admin-content__item opened">
+            <div class="admin-actions">
+
+                @using (Ajax.BeginForm("SearchGroup", "Teacher", new AjaxOptions { UpdateTargetId = "GResults", LoadingElementId = "Gloading" }, new { @class = "search" }))
+                {
+                    <span class="search-text">Поиск группы:</span>
+                    <input class="search-input" type="text" name="name" placeholder="Название группы">
+                    <input type="submit" value="" class="search-submit">
+                }
+
+
+            </div>
+            @if (Model.Count() == 0)
+            {
+                <p>У вас еще нет групп. Если это ошибка, обратитесь к администратору </p>
+            }
+            else
+            {
+                <div id="Gloading" style="display:none;">
+                    <p>Идет загрузка...</p>
+                </div>
+
+                <div class="grouplist-wrap" id="GResults">
+                    @{
+                        List<int> fileCounts = ViewBag.fileCounts;
+                        List<Theme> lastThemes = ViewBag.lastThemes;
+                        List<DateTime> lastFiles = ViewBag.lastFiles;
+                        int i = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <div class="grouplist-item">
+                            <div class="grouplist-item__head">
+                                <div class="descr">
+                                    <span class="name">@item.GroupName, @item.GroupLevel </span>
+
+                                    @if (item.isPersonal)
+                                    {
+                                        <span class="count">Человек: @item.GroupCount (Инд.)</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="count">Человек: @item.GroupCount</span>
+                                    }
+                                    <div class="back"><img src="~/Content/img_back/icons/back-icon.svg" alt=""> Обратно к информации</div>
+
+                                </div>
+                                <div class="actions">
+                                    <a href="~/Teacher/AddMessageForGroup/@item.Id" class="actions-item">
+                                        <img src="~/Content/img_back/icons/add-message-icon.svg" alt=""   class="icon">
+                                        <span>+ Сообщение</span>
+                                    </a>
+                                    <div class="open">
+                                        <img src="~/Content/img/icons/arrow-icon_blue.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grouplist-item__body">
+                                <div class="actions">
+                                    <a href="~/Teacher/AddMessageForGroup/@item.Id" class="actions-item" >
+                                        <img src="~/Content/img_back/icons/add-message-icon.svg" alt=""  class="icon">
+                                        <span>+ Сообщение</span>
+                                    </a>
+                                    <div class="toList">
+                                        <span> список </span>
+                                        <img src="~/Content/img_back/icons/back-icon.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="groups-info">
+                                    <div class="groups-info__item">
+                                        <span class="name">Расписание:</span>
+                                        <span class="data bold">@item.days</span>
+                                    </div>
+                                    <div class="groups-info__item">
+                                        <span class="name">Язык:</span>
+                                        <span class="data">@item.Language</span>
+                                    </div>
+
+
+                                    <div class="groups-info__item">
+                                        <span class="name">Тем:</span>
+                                        <span class="data ">
+
+                                            @item.ThemeList.Count
+                                            @if (lastThemes[i] != null)
+                                            {
+                                                <span class="lastData">Последняя - @lastThemes[i].themeName</span>
+                                            }
+                                        </span>
+                                    </div>
+                                    <div class="groups-info__item">
+                                        @{
+                                            DateTime lastFile = lastFiles[i];
+                                            string y = lastFile.Year.ToString("00");
+                                            string m = lastFile.Month.ToString("00");
+                                            string d = lastFile.Day.ToString("00");
+                                            string h = lastFile.Hour.ToString("00");
+                                            string min = lastFile.Minute.ToString("00");
+                                        }
+                                        <span class="name">Заданий:</span>
+                                        <span class="data ">
+                                            @fileCounts[i]
+                                            @if (fileCounts[i] != 0 && y != "1900")
+                                            {
+                                                <span class="lastData">Последний - @d.@m.@y в @h:@min</span>
+                                            }
+                                        </span>
+                                    </div>
+                                    <div class="groups-info__item">
+                                        <span class="name">Учебник:</span>
+                                        <span class="data">@item.textbook</span>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="grouplist-item__students">
+                                <div class="list">
+                                    @foreach (var student in item.GroupStudents)
+                                    {
+
+                                        int j = 1;
+
+                                        // Не учитель, так как в списке студентов еще и учитель
+                                        if (student.RoleName != "Teacher" && student.isActive)
+                                        {
+                                            if (student.withoutAvatar)
+                                            {
+                                                <p class="" data-img-url="https://mrsimon.ru/Content/img_back/main/avatar-empty.svg" data-IsEmpty="true" data-UserName="@student.UserFName @student.UserLName" data-id="@student.Id">
+                                                    <span class="num">@j.</span>
+                                                    @student.UserFName @student.UserLName
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p class="" data-img-url="https://mrsimon.ru/u_photos/@student.avatarName" data-IsEmpty="false" data-UserName="@student.UserFName @student.UserLName" data-id="@student.Id">
+                                                    <span class="num">@j.</span>
+                                                    @student.UserFName @student.UserLName
+                                                </p>
+                                            }
+
+                                            j++;
+                                        }
+
+                                    }
+
+
+
+                                </div>
+                                <div class="list-content">
+                                    <div class="list-content__card">
+                                        <div class="list-content__avatar">
+                                            <img src="~/Content/img_back/main/avatar.png" alt="">
+                                        </div>
+                                        <div class="actions">
+
+                                            <div class="actions-item js-toAddingStatistic" data-user="ПОЛЬЗОВАТЕЛЬ НЕ ВЫБРАН">
+                                                <img src="~/Content/img_back/icons/add-statistic-icon.svg" alt="" class="icon">
+                                                <span>Статистика</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        i++;
+
+                    }
+
+
+                </div>
+
+            }
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+</section>

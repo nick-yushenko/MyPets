@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Завершите регистрации";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+
+<div class="container">
+
+    <h2>@ViewBag.Title</h2>
+
+    <p>Ранее на Ваш электронный адрес были отправлены инструкции по завершению регистрации, пожалуйста проверьте Вашу почту</p>
+
+    @Html.ActionLink("Вернуться на главную", "Index", "Home")
+</div>

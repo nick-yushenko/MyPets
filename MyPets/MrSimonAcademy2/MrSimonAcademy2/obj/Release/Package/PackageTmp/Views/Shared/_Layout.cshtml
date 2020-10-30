@@ -1,0 +1,310 @@
+﻿
+@using Microsoft.AspNet.Identity
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="~/Content/img/meta-img.jpg" />
+    <meta name="author" content="Nick Yushenko">
+    <meta name="description" content="Новаторский центр изучения английского и немецкого языков в Красноярске. Постоянный набор в новые группы. Первое занятие бесплатно.">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/css/swiper.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/Content/css/style.min.css">
+
+    <title>Mr. Simon Academy</title>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(66865861, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/66865861" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="preloader-block">
+            <div class="item-1 item"></div>
+            <div class="item-2 item"></div>
+            <div class="item-3 item"></div>
+            <div class="item-4 item"></div>
+            <div class="item-5 item"></div>
+        </div>
+    </div>
+
+    <header class="header" id="top">
+        <div class="wrap">
+            <div class="header-wrap">
+                <div class="header-block address">
+                    <img src="~/Content/img/icons/address-icon.svg" alt="">
+                    <p>
+                        <span>Мы находимся:</span>
+
+                        Красноярск, <span class="br"></span> Академика Вавилова, 41Б
+                    </p>
+                </div>
+
+                <div class="header-block logo">
+                    <img src="~/Content/img/logo.svg" alt="Mr. Simon Academy">
+                </div>
+
+                <div class="header-block phone">
+                    <img src="~/Content/img/icons/phone-icon.svg" alt="">
+                    <p>
+                        <span>Ответим на вопросы:</span>
+
+                        <a href="tel:+79631919149" style="width: max-content;" class="link">+7 (391) 271 91 49</a>
+                        <span class="link">+7 (391) 271 91 49</span>
+                    </p>
+                </div>
+
+
+                <div class="burger">
+                    <img src="~/Content/img/menu-icon.svg" alt="">
+                </div>
+            </div>
+
+            <nav class="header-nav">
+                <a href="#about" class="link scrolledLink">О нас</a>
+                <a href="#courses" class="link scrolledLink">Наши курсы</a>
+                <a href="#founder" class="link scrolledLink">Преподаватели</a>
+                <a href="#flamp" class="link scrolledLink">Отзывы</a>
+                @if (Request.IsAuthenticated && User.IsInRole("Student"))
+                {
+                    @Html.ActionLink("Войти", "News", "Student", null, new { @class = "link bold" })
+
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Teacher"))
+                {
+                    @Html.ActionLink("Войти", "Users", "Teacher", null, new { @class = "link bold" })
+
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Войти", "Index", "Admin", null, new { @class = "link bold" })
+
+                }
+                @if (!Request.IsAuthenticated)
+
+                {
+                    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "link bold" })
+                }
+
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="header-mini">
+        <div class="wrap header-wrap ">
+            <a href="#top" class="header-mini-logo scrolledLink">
+                <img class="header-mini-logo" src="~/Content/img/logo-mini.svg" alt="">
+            </a>
+
+            <nav class="header-nav mini">
+                <a href="#about" class="link scrolledLink">О нас</a>
+                <a href="#courses" class="link scrolledLink">Наши курсы</a>
+                <a href="#founder" class="link scrolledLink">Преподаватели</a>
+                <a href="#flamp" class="link scrolledLink">Отзывы</a>
+                @if (Request.IsAuthenticated && User.IsInRole("Student"))
+                {
+                    @Html.ActionLink("Войти", "News", "Student", null, new { @class = "link bold" })
+
+                } 
+                @if (Request.IsAuthenticated && User.IsInRole("Teacher"))
+                {
+                    @Html.ActionLink("Войти", "Users", "Teacher", null, new { @class = "link bold" })
+
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Войти", "Index", "Admin", null, new { @class = "link bold" })
+
+                }
+                @if (!Request.IsAuthenticated)
+
+                {
+                    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "link bold" })
+                }
+
+            </nav>
+
+            <div class="header-block address mini">
+                <img src="~/Content/img/icons/address-icon.svg" alt="">
+                <p>
+                    <span>Мы находимся:</span>
+
+                    Красноярск, <span class="br"></span> Академика Вавилова, 41Б
+                </p>
+            </div>
+
+            <div class="header-block phone mini">
+                <img src="~/Content/img/icons/phone-icon.svg" alt="">
+                <p>
+                    <span>Ответим на вопросы:</span>
+
+                    <a href="tel:+79631919149" class="link" >+7 (391) 271 91 49</a>
+                    <span class="link">+7 (391) 271 91 49</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="menu">
+        <div class="wrap">
+            <div class="close">
+                <img src="~/Content/img/menu-close-icon.svg" alt="">
+            </div>
+            <div class="logo"><img src="~/Content/img/logo.svg" alt=""></div>
+            <ul class="menu-nav">
+                <li>
+                    <a href="#about" class="link scrolledLink menu-item">О нас</a>
+
+                </li>
+                <li>
+                    <a href="#courses" class="link scrolledLink menu-item">Наши курсы</a>
+
+                </li>
+                <li>
+                    <a href="#founder" class="link scrolledLink menu-item">Преподаватели</a>
+
+                </li>
+                <li>
+                    <a href="#flamp" class="link scrolledLink menu-item">Отзывы</a>
+
+                </li>
+                @if (Request.IsAuthenticated && User.IsInRole("Student"))
+                {
+                    @Html.ActionLink("Войти в личный кабинет", "News", "Student", null, new { @class = "link button" })
+
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Teacher"))
+                {
+                    @Html.ActionLink("Войти в личный кабинет", "Users", "Teacher", null, new { @class = "link button" })
+
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Войти в личный кабинет", "Index", "Admin", null, new { @class = "link button" })
+
+                }
+                @if (!Request.IsAuthenticated)
+
+                {
+                    @Html.ActionLink("Войти в личный кабинет", "Login", "Account", null, new { @class = "link button" })
+                }
+
+            </ul>
+
+            <div class="menu-wrap">
+
+
+                <div class="header-block phone">
+                    <img src="~/Content/img/icons/phone-icon.svg" alt="">
+                    <p>
+                        <span>Ответим на вопросы:</span>
+
+                        <a href="tel:+79631919149" class="link">+7 (391) 271 91 49</a>
+
+                    </p>
+                </div>
+
+                <div class="header-block address">
+                    <img src="~/Content/img/icons/address-icon.svg" alt="">
+                    <p>
+                        <span>Мы находимся:</span>
+
+                        Красноярск, <span class="br"></span> Академика Вавилова, 41Б
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @Html.Action("BrifModal", "Home")
+    @Html.Action("PrivacyModal", "Home")
+    @Html.Action("AcceptCookie", "Home")
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        @RenderBody()
+    </main>
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-logo">
+                <img src="~/Content/img/icons/footer-icon.svg" alt="" class="background">
+                <img src="~/Content/img/logo-mini.svg" alt="">
+            </div>
+            <div class="footer-block address">
+                <span>Адрес:</span>
+                <p>Красноярск, ул.&nbsp;Академика&nbsp;Вавилова,&nbsp;41Б</p>
+            </div>
+            <div class="footer-block contact">
+                <span>Контакты:</span>
+
+                <a href="tel:+79631919149" class="link">+7 (391) 271 91 49</a>
+                <span class="link">+7 (391) 271 91 49</span>
+                <a href="mailto:mr.simon.academy@mail.ru" class="link">mr.simon.academy@mail.ru</a>
+                <span class="link">mr.simon.academy@mail.ru</span>
+            </div>
+
+            <div class="footer-block social">
+                <span> Социальные сети:</span>
+                <a href="https://www.instagram.com/mr.simon.academy/?hl=ru" class="link">Instagram</a>
+                <a href="https://vk.com/mrsimonacademy" class="link"> ВКонтакте </a>
+            </div>
+
+            <a href="#main" class="scrolledLink toTop">
+                <img src="~/Content/img/toTop-icon.svg" alt="">
+                <span>Наверх</span>
+            </a>
+        </div>
+    </footer>
+
+
+
+
+
+    @Scripts.Render("~/content/js/jquery.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+    @Scripts.Render("~/content/js/swiper.min.js")
+    @Scripts.Render("~/content/js/jquery.mask.min.js")
+    @Scripts.Render("~/content/js/jquery.validate.min.js")
+    @Scripts.Render("~/content/js/components/preloader.js")
+
+    @Scripts.Render("~/content/js/components/cookie.js")
+
+
+    @Scripts.Render("~/content/js/index.js")
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

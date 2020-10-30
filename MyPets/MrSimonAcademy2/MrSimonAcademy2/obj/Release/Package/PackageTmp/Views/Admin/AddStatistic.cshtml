@@ -1,0 +1,98 @@
+﻿
+<div class="admin-add admin-content__item js-admin-addstatistic ">
+    <p>Добавление статистики <span id="js-UserNameAddStatistic">(Имя Фамилия)</span></p>
+
+    @using (Html.BeginForm("AddStatistic", "Admin", FormMethod.Post, new { id = "AddStatisticForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="userId" value="null" id="js-UserIdAddStatistic">
+
+        <div class="admin-add__block adding">
+            <span class="admin-add__text">1. Посещаемость</span>
+            <div class="input-block ">
+                <span class="text">Всего уроков</span>
+                <input type="number" name="lessonsCount" class="input " placeholder="60">
+
+            </div>
+
+            <div class="input-block ">
+                <span class="text">Пропущено уроково </span>
+                <input type="number" name="loseLessons" class="input " placeholder="60">
+            </div>
+        </div>
+
+        <div class="admin-add__block adding">
+            <span class="admin-add__text">2. Домашние задания</span>
+            <div class="input-block ">
+                <span class="text">Всего заданий</span>
+
+                <input type="number" name="homeworkCount" class="input " placeholder="60">
+            </div>
+
+            <div class="input-block ">
+                <span class="text">Сдано </span>
+                <input type="number" name="passedHomework" class="input " placeholder="60">
+
+
+            </div>
+        </div>
+        <div class="admin-add__block adding">
+            <span class="admin-add__text">3. Активность и концентрация</span>
+            <div class="input-block ">
+                <span class="text">Активность</span>
+
+                <input type="number" name="activity" class="input " placeholder="от 0 до 100">
+            </div>
+
+            <div class="input-block ">
+                <span class="text">Концентрация</span>
+                <input type="number" name="concentration" class="input " placeholder="от 0 до 100">
+
+
+            </div>
+        </div>
+
+
+
+        <div class="admin-add__block adding">
+            <span class="admin-add__text">4. Навыки</span>
+            <div class="input-block ">
+                <span class="text">Speaking</span>
+                <input type="number" name="Speaking" class="input " placeholder="от 0 до 100">
+            </div>
+
+            <div class="input-block ">
+                <span class="text">Listening </span>
+                <input type="number" name="Listening" class="input" placeholder="от 0 до 100">
+            </div>
+            <div class="input-block ">
+                <span class="text">Writing</span>
+                <input type="number" name="Writing" class="input " placeholder="от 0 до 100">
+            </div>
+
+            <div class="input-block ">
+                <span class="text">Reading </span>
+                <input type="number" name="Reading" class="input" placeholder="от 0 до 100">
+            </div>
+        </div>
+
+        <div class="admin-add__block adding">
+            <span class="admin-add__text">6. Обратная связь</span>
+            <div class="input-block ">
+                <span class="text">Сильные стороны </span>
+                <textarea class="input" name="adventuresPlus"></textarea>
+            </div>
+
+            <div class="input-block ">
+                <span class="text">На что обратить внимание</span>
+                <textarea class="input" name="adventuresMinus"></textarea>
+            </div>
+        </div>
+
+        <input type="submit" class="submit" value="Добавить">
+        <div class="back js-backToUserList" data-location="admin-users">Назад к списку</div>
+
+    }
+
+</div>

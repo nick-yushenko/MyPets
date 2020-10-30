@@ -1,0 +1,42 @@
+﻿
+@model MrSimonAcademy2.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+
+}
+
+
+<section class="admin">
+    <a href="~/Teacher/Users" class="js-backToThemeList"> <img src="~/Content/img_back/icons/back-icon.svg" alt=""> Вернуться к списку</a>
+    <h1 class="content-title">Сообщение  для группы<span style="font-weight: bold; font-size: 20px"> @Model.UserFName @Model.UserLName</span></h1>
+
+    <div class="admin-add admin-content__item opened">
+
+        @using (Html.BeginForm("AddMessage", "Teacher", FormMethod.Post, new { id = "AddMessage" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div class="input-block ">
+                <span class="text">Заголовок:</span>
+                <input type="text" name="msgTitle" class="input " placeholder="Очень важно!">
+
+            </div>
+            <div class="input-block ">
+                <span class="text">Сообщение:</span>
+                <textarea rows="10" cols="45" class="input" name="msgText"
+                          placeholder="Здесь какое-то сообщение"></textarea>
+            </div>
+
+            <input type="submit" class="submit" value="Добавить">
+            @Html.ActionLink("Назад к списку", "Users", "Teacher", new { @class = "back" })
+
+        }
+
+
+    </div>
+
+</section>
+
